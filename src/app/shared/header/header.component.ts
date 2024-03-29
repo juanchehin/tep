@@ -14,7 +14,7 @@ export class HeaderComponent {
   public usuario: any;
   banderaOcultarSidebar = false;
 
-  titulo_sucursal = 'Estetica - ';
+  titulo = 'TEP';
   bandera_bazar = false;
 
   constructor( private authService: AuthService,
@@ -23,7 +23,6 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
-    this.cargar_titulo();
   };
 
   logout() {
@@ -39,16 +38,6 @@ export class HeaderComponent {
     this.router.navigateByUrl(`/dashboard/buscar/${ termino }`);
   }
 
-  cargar_titulo(  ) {
-
-    this.titulo_sucursal += localStorage.getItem('sucursal');
-    
-    if(localStorage.getItem('sucursal') === 'Bazar')
-    {
-      this.bandera_bazar = true;
-    }
-
-  }
 
   habilitar_sidebar(  ) {
 

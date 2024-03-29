@@ -9,7 +9,7 @@ import { VerificaTokenGuard } from '../guards/verifica-token.guard';
 
 
 const childRoutes: Routes = [
-  { path: '', component: DashboardComponent, data: { titulo: 'Dashboard' } }
+  { path: '', component: DashboardComponent, data: { titulo: 'Dashboard' } },
   // { 
   //   path: 'productos',
   //   canActivate: [LoginGuardGuard, VerificaTokenGuard],
