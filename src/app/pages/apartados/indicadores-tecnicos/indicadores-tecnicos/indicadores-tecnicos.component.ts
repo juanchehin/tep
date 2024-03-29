@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-indicadores-tecnicos',
-  templateUrl: './indicadores-tecnicos.component.html'
+  templateUrl: './indicadores-tecnicos.component.html',
+  styleUrls: ['./indicadores-tecnicos.component.css']
 })
 export class IndicadoresTecnicosComponent {
 
