@@ -748,5 +748,11 @@ export class IndicadoresTecnicosComponent {
       this.calcular_cci();
       this.calcular_senal_grupos();
     }
+
+    reset_variables(){
+      this.escenarios_alcistas = 0;
+      this.escenarios_bajistas = 0;
+      this.escenarios_neutrales = 0;
+    }
   
 }
