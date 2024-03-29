@@ -18,7 +18,7 @@ export class IndicadoresTecnicosComponent {
     select_cruce_ma = "-";
     observaciones_ma = "-";
   
-    // rsi
+    // 
     resultado_ma = "-";
     resultado_wma = "-";
   
@@ -564,19 +564,32 @@ export class IndicadoresTecnicosComponent {
         this.escenarios_alcistas += 1;
         return;
       }
+
+      this.resultado_rsi = "Neutral";
+      this.escenarios_neutrales += 1;
   
     }
   
-    // ==========================
+    // ========== MFI ================
     calcular_mfi(){
       if(this.select_sobre_cv_mfi == "-")
       {
         this.observaciones_mfi = "Problema con los datos";
         return;
       }
+
+      // --
+      if((this.select_precio_mfi == "asciende")){
+        this.observaciones_mfi += "Debilidad en la tendencia alcista";
+        this.escenarios_bajistas += 1;
+      }
+
+      if((this.select_precio_mfi == "desciende")){
+        this.observaciones_mfi += "Potencial reversión alcista";
+        this.escenarios_alcistas += 1;
+      }
       
-      // this.observaciones_macd = "Si el precio sube pero el macdumen disminuye, esto podría señalar una falta de interés o una debilidad en la tendencia alcista";
-      
+      //  --
       if((this.select_sobre_cv_mfi == "bajista")){
         this.resultado_mfi = "Bajista";
         this.escenarios_bajistas += 1;
@@ -600,17 +613,19 @@ export class IndicadoresTecnicosComponent {
         this.escenarios_alcistas += 1;
         return;
       }
+
+      
   
     }
   
     //
     changeStatusMFI1(){
-      this.observaciones_mfi = "Bajista";
+      this.observaciones_mfi += "- Bajista ";
     }
   
     //
     changeStatusMFI2(){
-      this.observaciones_mfi = "Cambio posible en la tendencia";
+      this.observaciones_mfi += "- Cambio posible en la tendencia";
     }
   
     // ==========================

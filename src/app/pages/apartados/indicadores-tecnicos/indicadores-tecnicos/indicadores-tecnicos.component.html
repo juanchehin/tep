@@ -351,6 +351,7 @@
                           <select class="form-select" [(ngModel)]="select_sobre_cv_rsi">
                             <option value="alcista">RSI cae por debajo de 30</option>
                             <option value="bajista">RSI se encuentra por encima de 70</option>
+                            <option value="neutral">RSI entre 30 y 70</option>
                           </select>
                 
                           <br>
@@ -359,6 +360,7 @@
                           <select class="form-select" [(ngModel)]="select_divergencia_rsi">
                             <option value="alcista">El precio de la criptomoneda está alcanzando nuevos máximos, y el MACD está siguiendo</option>
                             <option value="bajista">El precio de la criptomoneda está alcanzando nuevos máximos, pero el MACD no está siguiendo</option>
+                            <option value="neutral">Ninguna</option>
                           </select>
                 
                           <br><br>
@@ -391,6 +393,10 @@
                           <select class="form-select" [(ngModel)]="select_precio_mfi">
                             <option value="alcista">MFI y precio subiendo simultáneamente	</option>
                             <option value="bajista">MFI y precio bajando simultáneamente	</option>
+
+                            <option value="desciende">MFI sube y precio bajando desciende	</option>
+                            <option value="asciende">MFI baja y precio bajando asciende	</option>
+
                           </select>
                           <br>
                           <input class="form-check-input" type="checkbox" value="" (change)="changeStatusMFI1()">
