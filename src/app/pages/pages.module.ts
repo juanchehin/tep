@@ -7,10 +7,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { PagesComponent } from './pages.component';
 import { ConfiguracionesModule } from './mantenimientos/configuraciones/configuraciones.module';
+import { IndicadoresTecnicosComponent } from './indicadores-tecnicos/indicadores-tecnicos.component';
 
 @NgModule({
   declarations: [
-    PagesComponent
+    PagesComponent,
+    IndicadoresTecnicosComponent
   ],
   exports: [
     PagesComponent

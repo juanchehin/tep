@@ -4,13 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesRoutingModule } from './pages/pages.routing';
 import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component';
 import { MaintenanceComponent } from './shared/maintenance/maintenance.component';
+import { IndicadoresTecnicosComponent } from './pages/indicadores-tecnicos/indicadores-tecnicos.component';
 
 
 const routes: Routes = [
-  {  path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
+  // {  path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) },
   { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
-  { path: 'maintenance', component: MaintenanceComponent },
+  { path: 'indicadores-tecnicos', component: IndicadoresTecnicosComponent },
 
   { path: '**', component: NopagefoundComponent },
 ];
