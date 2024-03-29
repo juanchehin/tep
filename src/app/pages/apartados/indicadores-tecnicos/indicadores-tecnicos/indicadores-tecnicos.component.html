@@ -255,6 +255,10 @@
                           <select class="form-select" [(ngModel)]="select_tendencia_sar">
                             <option value="alcista">Puntos están por debajo del precio actual en un mercado bajista</option>
                             <option value="bajista">Puntos están por encima del precio actual en un mercado alcista</option>
+
+                            <option value="alcista2">Puntos están por debajo del precio actual en un mercado alcista</option>
+                            <option value="bajista2">Puntos están por encima del precio actual en un mercado bajista</option>
+
                           </select>
                 
                           <br>
@@ -498,7 +502,7 @@
                           <br>
 
                           <label>Indique: </label><br>
-                          <select class="form-select" [(ngModel)]="select_senal">
+                          <select class="form-select" [(ngModel)]="select_pred_binance">
                             <option value="alcista">Alcista	</option>
                             <option value="bajista">Bajista	</option>
                             <option value="neutral">Neutral	</option>
@@ -510,7 +514,7 @@
                           <button class="btn btn-primary" type="button" (click)="calcular_prediccion_binance()">Calcular tendencia para señal</button>
                 
                         </td>
-                        <td>{{ resultado_senal }}</td>
+                        <td>{{ resultado_pred_binance }}</td>
                         <td>-</td>
                       </tr>
                       <!-- ==== patron ======= -->
@@ -541,8 +545,16 @@
                   <br><br>
                   <div class="d-grid gap-2">
                     <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_tendencia()">Calcular todo</button>
+                    <!-- ========= Botones ========== -->
+                    <div class="row">
+                      <div class="col-md-6">
+                        <button class="btn btn-primary" type="button" (click)="calcular_tendencia()">Calcular todo</button>
+                      </div>
+                      <div class="col-md-6">
+                        <button class="btn btn-success" type="button" (click)="reset_variables()" style="text-align: right;">Resetear variables</button>
+                      </div>
+                    </div>
+                    <!-- ========= Fin Botones ========== -->
                   </div>
                   <br><br>
                   <table class="table table-dark table-sm">

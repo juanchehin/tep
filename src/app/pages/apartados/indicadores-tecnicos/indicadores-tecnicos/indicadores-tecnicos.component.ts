@@ -8,6 +8,9 @@ import { Component } from '@angular/core';
 export class IndicadoresTecnicosComponent {
 
     //
+    bandera_changeStatusMFI1 = false;
+    bandera_changeStatusMFI2 = false;
+    //
     escenarios_alcistas = 0;
     escenarios_bajistas = 0;
     escenarios_neutrales = 0;
@@ -103,7 +106,11 @@ export class IndicadoresTecnicosComponent {
     //
     select_senal = "-";
     resultado_senal = "-";
-  
+
+    //
+    select_pred_binance = "-";
+    resultado_pred_binance = "-";
+
     // ==========================
     calcular_ma(){
       if(this.select_dir_ma == "-")
@@ -369,13 +376,25 @@ export class IndicadoresTecnicosComponent {
       if((this.select_tendencia_sar == "alcista")){
         this.resultado_sar = "Alcista";
         this.escenarios_alcistas += 1;
-        this.observaciones_sar = "Señales de compra";
+        this.observaciones_sar += " - Señales de compra";
       }
   
       if((this.select_tendencia_sar == "bajista")){
         this.resultado_sar = "Bajista";
         this.escenarios_bajistas += 1;
-        this.observaciones_sar = "Señales de venta";
+        this.observaciones_sar += " - Señales de venta";
+      }
+
+      if((this.select_tendencia_sar == "alcista2")){
+        // this.resultado_sar = "Bajista";
+        this.escenarios_bajistas += 1;
+        this.observaciones_sar = " - tendencia alcista está en vigor y que el mercado está mostrando fuerza alcista";
+      }
+
+      if((this.select_tendencia_sar == "bajista2")){
+        // this.resultado_sar = "Bajista";
+        this.escenarios_bajistas += 1;
+        this.observaciones_sar += " -  tendencia bajista está en vigor y que el mercado está mostrando fuerza bajista";
       }
   
       switch (this.select_divergencia_sar) {
@@ -576,6 +595,8 @@ export class IndicadoresTecnicosComponent {
       {
         this.observaciones_mfi = "Problema con los datos";
         return;
+      }else{
+        this.observaciones_mfi = "Problema con los datos";
       }
 
       // --
@@ -614,18 +635,30 @@ export class IndicadoresTecnicosComponent {
         return;
       }
 
+      if((this.select_sobre_cv_mfi == "neutral")){
+        this.resultado_mfi = "Neutral";
+        this.escenarios_neutrales += 1;
+        return;
+      }
+
       
   
     }
   
     //
     changeStatusMFI1(){
-      this.observaciones_mfi += "- Bajista ";
+      if(!this.bandera_changeStatusMFI1){
+        this.observaciones_mfi += "- Bajista ";
+        this.bandera_changeStatusMFI1 = true;
+      }
     }
   
     //
     changeStatusMFI2(){
-      this.observaciones_mfi += "- Cambio posible en la tendencia";
+      if(!this.bandera_changeStatusMFI2){
+        this.observaciones_mfi += "- Cambio posible en la tendencia";
+        this.bandera_changeStatusMFI2 = true;
+      }
     }
   
     // ==========================
@@ -719,13 +752,15 @@ export class IndicadoresTecnicosComponent {
       
       // this.observaciones_macd = "Si el precio sube pero el macdumen disminuye, esto podría señalar una falta de interés o una debilidad en la tendencia alcista";
       
-      if((this.select_senal == "alcista")){
-        this.resultado_senal = "Alcista";
+      if((this.select_pred_binance == "alcista")){
+        this.resultado_pred_binance = "Alcista";
         this.escenarios_alcistas += 1;
-      }else if((this.select_senal == "bajista")){
-        this.resultado_senal = "Bajista";
+      }else if((this.select_pred_binance == "bajista")){
+        this.resultado_pred_binance = "Bajista";
+        this.escenarios_bajistas += 1;
       }else{
-        this.resultado_senal = "Neutral";
+        this.resultado_pred_binance = "Neutral";
+        this.escenarios_neutrales += 1;
       }
   
   
