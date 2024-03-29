@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 // Modulos
 import { PagesRoutingModule } from './pages/pages.routing';
 import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component';
-import { MaintenanceComponent } from './shared/maintenance/maintenance.component';
-import { IndicadoresTecnicosComponent } from './pages/indicadores-tecnicos/indicadores-tecnicos.component';
 
 
 const routes: Routes = [
@@ -12,6 +10,7 @@ const routes: Routes = [
   { path: '', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) },
   { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
   // { path: 'indicadores-tecnicos', component: IndicadoresTecnicosComponent },
+  { path: 'indicadores-tecnicos', loadChildren: () => import('./pages/apartados/indicadores-tecnicos/indicadores-tecnicos.module').then(m => m.IndicadoresTecnicosModule) },
 
   { path: '**', component: NopagefoundComponent },
 ];

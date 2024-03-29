@@ -6,12 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Modulos
 import { SharedModule } from '../shared/shared.module';
 import { PagesComponent } from './pages.component';
-import { IndicadoresTecnicosComponent } from './indicadores-tecnicos/indicadores-tecnicos.component';
 
 @NgModule({
   declarations: [
-    PagesComponent,
-    IndicadoresTecnicosComponent
+    PagesComponent
   ],
   exports: [
     PagesComponent
