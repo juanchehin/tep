@@ -11,7 +11,7 @@ const routes: Routes = [
   // {  path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) },
   { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
-  { path: 'indicadores-tecnicos', component: IndicadoresTecnicosComponent },
+  // { path: 'indicadores-tecnicos', component: IndicadoresTecnicosComponent },
 
   { path: '**', component: NopagefoundComponent },
 ];

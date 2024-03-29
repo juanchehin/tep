@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Modulos
 import { SharedModule } from '../shared/shared.module';
 import { PagesComponent } from './pages.component';
-import { ConfiguracionesModule } from './mantenimientos/configuraciones/configuraciones.module';
 import { IndicadoresTecnicosComponent } from './indicadores-tecnicos/indicadores-tecnicos.component';
 
 @NgModule({
@@ -22,8 +21,7 @@ import { IndicadoresTecnicosComponent } from './indicadores-tecnicos/indicadores
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    RouterModule,
-    ConfiguracionesModule
+    RouterModule
   ]
 })
 export class PagesModule { }
