@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { IndicadoresTecnicosComponent } from './apartados/indicadores-tecnicos/indicadores-tecnicos/indicadores-tecnicos.component';
 import { AnalisisChartistaComponent } from './apartados/analisis-chartista/analisis-chartista.component';
+import { AnalisisFundamentalComponent } from './apartados/analisis-fundamental/analisis-fundamental.component';
 
 
 
@@ -11,6 +12,7 @@ const childRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard' } },
   { path: 'indicadores-tecnicos', component: IndicadoresTecnicosComponent },
   { path: 'analisis-chartista', component: AnalisisChartistaComponent },
+  { path: 'analisis-fundamental', component: AnalisisFundamentalComponent },
 
   // { 
   //   path: 'indicadores-tecnicos',
