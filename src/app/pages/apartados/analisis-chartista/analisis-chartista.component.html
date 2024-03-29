@@ -1,0 +1,232 @@
+
+<div id="wrapper">
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+
+    <div class="content-page">
+        <div class="content">
+ 
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+              <div class="row">
+                <div class="col-md-8">
+                  <h1> Analisis chartista - TEP</h1>
+                </div>
+                <div class="col-md-4">
+                </div>
+              </div>
+
+              <div class="container text-center">
+                <table class="table table-bordered border-primary table-responsive">
+                  <thead class="">
+                    <tr class="thick-row">
+                      <th scope="col">Indicador</th>
+                      <th scope="col">Tendencia</th>
+                      <th scope="col">Comentarios</th>
+                    </tr>
+                  </thead>
+                  <tbody class="">
+                    <!-- ===== Inversion ====== -->
+                    <tr class="thick-row">
+                      <td scope="row">
+                        <h4>Inversion</h4>
+                      
+                        <br>
+                        <img src="../../../assets/images/inversion.png" alt="">
+                        <br>
+                        <label>Seleccione</label><br>
+                        <select class="form-select" [(ngModel)]="select_inversion">
+                          <option value="alcista">Alcista</option>
+                          <option value="bajista">Bajista</option>
+                          <option value="ninguna">Ninguna</option>
+                        </select>
+              
+                        <br>
+
+                        <button class="btn btn-primary" type="button" (click)="calcular_inversion()">Calcular tendencia para inversion</button>
+              
+                      </td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <!-- ===== Continuacion ====== -->
+                    <tr class="thick-row">
+                    <td scope="row">
+                        <h4>Continuacion</h4>
+                    
+                        <br>
+                        <img src="../../../assets/images/continuacion.png" alt="">
+                        <br>
+                        <label>Seleccione</label><br>
+                        <select class="form-select" >
+                        <option value="alcista">Alcista</option>
+                        <option value="bajista">Bajista</option>
+                        <option value="ninguna">Ninguna</option>
+                        </select>
+            
+                        <br>
+
+                        <button class="btn btn-primary" type="button" >Calcular tendencia para continuacion</button>
+            
+                    </td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                    <!-- ===== Inversion 2 ====== -->
+                    <tr class="thick-row">
+                    <td scope="row">
+                        <h4>Inversion 2</h4>
+                    
+                        <br>
+                        <img src="../../../assets/images/inversion2.png" alt="">
+                        <br>
+                        <label>Seleccione</label><br>
+                        <select class="form-select" >
+                        <option value="alcista2">Alcista</option>
+                        <option value="bajista2">Bajista</option>
+                        <option value="ninguna2">Ninguna</option>
+                        </select>
+            
+                        <br>
+
+                        <button class="btn btn-primary" type="button" >Calcular tendencia para inversion 2</button>
+            
+                    </td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                    <!-- ===== Continuacion 2 ====== -->
+                    <tr class="thick-row">
+                        <td scope="row">
+                            <h4>Continuacion 2</h4>
+                        
+                            <br>
+                            <img src="../../../assets/images/continuacion2.png" alt="">
+                            <br>
+                            <label>Seleccione</label><br>
+                            <select class="form-select" >
+                            <option value="alcista2">Alcista</option>
+                            <option value="bajista2">Bajista</option>
+                            <option value="ninguna2">Ninguna</option>
+                            </select>
+                
+                            <br>
+    
+                            <button class="btn btn-primary" type="button" >Calcular tendencia para continuacion 2</button>
+                
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <!-- ===== Inversion 3 ====== -->
+                    <tr class="thick-row">
+                    <td scope="row">
+                        <h4>Inversion 3</h4>
+                    
+                        <br>
+                        <img src="../../../assets/images/inversion3.png" alt="">
+                        <br>
+                        <label>Seleccione</label><br>
+                        <select class="form-select" >
+                        <option value="alcista3">Alcista</option>
+                        <option value="bajista3">Bajista</option>
+                        <option value="ninguna3">Ninguna</option>
+                        </select>
+            
+                        <br>
+
+                        <button class="btn btn-primary" type="button" >Calcular tendencia para Inversion 3</button>
+            
+                    </td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                    <!-- ===== Continuacion 3 ====== -->
+                    <tr class="thick-row">
+                        <td scope="row">
+                            <h4>Continuacion 3</h4>
+                        
+                            <br>
+                            <img src="../../../assets/images/continuacion3.png" alt="">
+                            <br>
+                            <label>Seleccione</label><br>
+                            <select class="form-select" >
+                            <option value="alcista3">Alcista</option>
+                            <option value="bajista3">Bajista</option>
+                            <option value="ninguna3">Ninguna</option>
+                            </select>
+                
+                            <br>
+    
+                            <button class="btn btn-primary" type="button" >Calcular tendencia para continuacion 3</button>
+                
+                        </td>
+                        <td></td>
+                        <td></td>
+                        </tr>
+                    <!-- ===== Inversion 4 ====== -->
+                    <tr class="thick-row">
+                    <td scope="row">
+                        <h4>Inversion 4</h4>
+                    
+                        <br>
+                        <img src="../../../assets/images/inversion4.png" alt="">
+                        <br>
+                        <label>Seleccione</label><br>
+                        <select class="form-select" >
+                        <option value="alcista4">Alcista</option>
+                        <option value="bajista4">Bajista</option>
+                        <option value="ninguna4">Ninguna</option>
+                        </select>
+            
+                        <br>
+
+                        <button class="btn btn-primary" type="button" >Calcular tendencia para inversion 4</button>
+            
+                    </td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                     <!-- ===== Continuacion 4 ====== -->
+                    <tr class="thick-row">
+                        <td scope="row">
+                            <h4>Continuacion 4</h4>
+                        
+                            <br>
+                            <img src="../../../assets/images/continuacion4.png" alt="">
+                            <br>
+                            <label>Seleccione</label><br>
+                            <select class="form-select" >
+                            <option value="alcista4">Alcista</option>
+                            <option value="bajista4">Bajista</option>
+                            <option value="ninguna4">Ninguna</option>
+                            </select>
+                
+                            <br>
+    
+                            <button class="btn btn-primary" type="button" >Calcular tendencia para continuacion 4</button>
+                
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <br><br>
+
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+</div>

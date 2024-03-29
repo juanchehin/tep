@@ -1,12 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
-// Mantenimientos
-// import { PedidosComponent } from './mantenimientos/pedidos/pedidos/pedidos.component';
-import { LoginGuardGuard } from '../guards/login-guard.guard';
-import { VerificaTokenGuard } from '../guards/verifica-token.guard';
-import { IndicadoresTecnicosModule } from './apartados/indicadores-tecnicos/indicadores-tecnicos.module';
 import { IndicadoresTecnicosComponent } from './apartados/indicadores-tecnicos/indicadores-tecnicos/indicadores-tecnicos.component';
+import { AnalisisChartistaComponent } from './apartados/analisis-chartista/analisis-chartista.component';
 
 
 
@@ -14,6 +10,7 @@ const childRoutes: Routes = [
   { path: '', component: DashboardComponent, data: { titulo: 'Dashboard' } },
   { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard' } },
   { path: 'indicadores-tecnicos', component: IndicadoresTecnicosComponent },
+  { path: 'analisis-chartista', component: AnalisisChartistaComponent },
 
   // { 
   //   path: 'indicadores-tecnicos',
