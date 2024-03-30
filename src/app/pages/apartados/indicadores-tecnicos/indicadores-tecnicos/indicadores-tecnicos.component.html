@@ -175,7 +175,7 @@
                           <label>Indicador de Tendencia Intradía</label><br>
                           <select class="form-select" [(ngModel)]="select_tendencia_vwap">
                             <option value="encima">El precio se mantiene consistentemente por encima del VWAP </option>
-                            <option value="debajo">El precio se mantiene consistentemente por debaji del VWAP</option>
+                            <option value="debajo">El precio se mantiene consistentemente por debajo del VWAP</option>
                             <option value="medio">Plana</option>
                           </select>
                 
@@ -474,6 +474,38 @@
                         </td>
                         <td>{{ resultado_cci }}</td>
                         <td>{{ observaciones_cci }}</td>
+                      </tr>
+                      <!-- ====== StochRSI ===== -->
+                      <tr class="thick-row">
+                        <td scope="row">
+                          <h4>StochRSI - Índice de fuerza relativa</h4>
+                
+                          <br>
+
+                          <label>Sobrecompra y sobreventa </label><br>
+                          <select class="form-select" [(ngModel)]="select_valor_stochrsi">
+                            <option value="sobrecompra">Un valor por encima de 0.8</option>
+                            <option value="sobreventa">Un valor por debajo de 0.2</option>
+                            <option value="neutral">RSI entre 30 y 70</option>
+                          </select>
+
+                          <br>
+
+                          <label>K y D </label><br>
+                          <select class="form-select" [(ngModel)]="select_valor_stochrsi_kd">
+                            <option value="alcista">%K cruza por encima de la línea %D</option>
+                            <option value="bajista">%K cruza por debajo de la línea %D</option>
+                          </select>
+                
+                          <br><br>
+                          
+                          <button class="btn btn-primary" type="button" (click)="calcular_stochrsi()">Calcular tendencia para StochRSI</button>
+                
+                        </td>
+                        
+                        <td>{{ resultado_stochrsi }}</td>
+                        <td>{{ observaciones_stochrsi }}</td>
+                
                       </tr>
                       <!-- ==== Señal grupo ======= -->
                       <tr class="thick-row">

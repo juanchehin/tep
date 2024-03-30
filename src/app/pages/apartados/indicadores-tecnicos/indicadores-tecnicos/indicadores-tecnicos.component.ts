@@ -102,7 +102,13 @@ export class IndicadoresTecnicosComponent {
     select_valor_cci = "-";
     resultado_cci = "-"
     observaciones_cci = "-";
-  
+
+    //
+    select_valor_stochrsi = "-";
+    resultado_stochrsi = "-"
+    observaciones_stochrsi = "-";
+    select_valor_stochrsi_kd = "-";
+
     //
     select_senal = "-";
     resultado_senal = "-";
@@ -609,7 +615,7 @@ export class IndicadoresTecnicosComponent {
         this.observaciones_mfi = "Problema con los datos";
         return;
       }else{
-        this.observaciones_mfi = "Problema con los datos";
+        this.observaciones_mfi = "-";
       }
 
       // --
@@ -625,19 +631,19 @@ export class IndicadoresTecnicosComponent {
       
       //  --
       if((this.select_sobre_cv_mfi == "bajista")){
-        this.resultado_mfi = "Bajista";
+        this.resultado_mfi += " - Bajista";
         this.escenarios_bajistas += 1;
         return;
       }
   
       if((this.select_sobre_cv_mfi == "alcista")){
-        this.resultado_mfi = "Alcista";
+        this.resultado_mfi += " - Alcista";
         this.escenarios_alcistas += 1;
         return;
       }
   
       if((this.select_sobre_cv_mfi == "bajista") && (this.select_divergencia_macd == "alcista")){
-        this.resultado_mfi = "Bajista";
+        this.resultado_mfi += " - Bajista";
         this.escenarios_bajistas += 1;
         return;
       }
@@ -779,6 +785,36 @@ export class IndicadoresTecnicosComponent {
         this.escenarios_bajistas += 1;
       }else{
         this.resultado_pred_binance = "Neutral";
+        this.escenarios_neutrales += 1;
+      }
+  
+  
+    }
+
+    // ==========================
+    calcular_stochrsi(){
+      
+      // this.observaciones_macd = "Si el precio sube pero el macdumen disminuye, esto podría señalar una falta de interés o una debilidad en la tendencia alcista";
+      
+      if((this.select_pred_binance == "sobreventa")){
+        this.observaciones_stochrsi = "Alcista";
+        this.escenarios_alcistas += 1;
+      }else if((this.select_pred_binance == "sobrecompra")){
+        this.observaciones_stochrsi = "Bajista";
+        this.escenarios_bajistas += 1;
+      }else{
+        this.observaciones_stochrsi = "Neutral";
+        this.escenarios_neutrales += 1;
+      }
+
+      if((this.select_valor_stochrsi_kd == "alcista")){
+        this.observaciones_stochrsi += " - Alcista";
+        this.escenarios_alcistas += 1;
+      }else if((this.select_pred_binance == "bajista")){
+        this.observaciones_stochrsi += " - Bajista";
+        this.escenarios_bajistas += 1;
+      }else{
+        this.observaciones_stochrsi += " - Neutral";
         this.escenarios_neutrales += 1;
       }
   
