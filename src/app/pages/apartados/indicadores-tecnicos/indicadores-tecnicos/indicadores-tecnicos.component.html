@@ -451,6 +451,27 @@
                         <td>{{ resultado_kdj }}</td>
                         <td>{{ observaciones_kdj }}</td>
                       </tr>
+                      <!-- ===== OBV - Volumen de balance ====== -->
+                      <tr class="thick-row">
+                        <td scope="row">
+                          <h4>OBV - Volumen de balance</h4>
+                
+                          <br>
+
+                          <label>Confirmación de tendencias </label><br>
+                          <select class="form-select" [(ngModel)]="select_tendencia_obv">
+                            <option value="alcista">El precio está subiendo y el OBV también está subiendo	</option>
+                            <option value="bajista">El precio está bajando y el OBV también está bajando	</option>
+                          </select>
+                
+                          <br><br>
+                          
+                          <button class="btn btn-primary" type="button" (click)="calcular_obv()">Calcular tendencia para KDJ</button>
+                
+                        </td>        
+                        <td>{{ resultado_obv }}</td>
+                        <td>{{ observaciones_obv }}</td>
+                      </tr>
                       <!-- ==== CCI ======= -->
                       <tr class="thick-row">
                         <td scope="row">

@@ -110,6 +110,12 @@ export class IndicadoresTecnicosComponent {
     select_valor_stochrsi_kd = "-";
 
     //
+    select_tendencia_obv = "-";
+    resultado_obv = "-"
+    observaciones_obv = "-";
+    select_valor_obv_kd = "-";
+
+    //
     select_senal = "-";
     resultado_senal = "-";
 
@@ -818,6 +824,27 @@ export class IndicadoresTecnicosComponent {
         this.escenarios_neutrales += 1;
       }
   
+  
+    }
+
+    // ==========================
+    calcular_obv(){
+      
+      // this.observaciones_macd = "Si el precio sube pero el macdumen disminuye, esto podría señalar una falta de interés o una debilidad en la tendencia alcista";
+      
+      if((this.select_tendencia_obv == "alcista")){
+        this.resultado_obv = "Alcista";
+        this.observaciones_obv = "Alcista";
+        this.escenarios_alcistas += 1;
+      }else if((this.select_tendencia_obv == "bajista")){
+        this.observaciones_obv = "Bajista";
+        this.resultado_obv = "Bajista";
+        this.escenarios_bajistas += 1;
+      }else{
+        this.observaciones_obv = "Neutral";
+        this.escenarios_neutrales += 1;
+      }
+
   
     }
     // ==========================
