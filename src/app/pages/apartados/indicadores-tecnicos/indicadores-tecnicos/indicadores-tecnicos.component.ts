@@ -557,30 +557,43 @@ export class IndicadoresTecnicosComponent {
       
       // this.observaciones_macd = "Si el precio sube pero el macdumen disminuye, esto podría señalar una falta de interés o una debilidad en la tendencia alcista";
       
-      if((this.select_sobre_cv_rsi == "bajista") && (this.select_divergencia_macd == "bajista")){
+      if((this.select_sobre_cv_rsi == "bajista") && (this.select_divergencia_rsi == "bajista")){
         this.resultado_rsi = "Bajista";
         this.observaciones_rsi = "Posible reversión bajista";
         this.escenarios_bajistas += 1;
         return;
       }
   
-      if((this.select_sobre_cv_rsi == "alcista") && (this.select_divergencia_macd == "alcista")){
+      if((this.select_sobre_cv_rsi == "alcista") && (this.select_divergencia_rsi == "alcista")){
         this.resultado_rsi = "Alcista";
         this.escenarios_alcistas += 1;
         this.observaciones_rsi = "Posible reversión alcista";
         return;
       }
   
-      if((this.select_sobre_cv_rsi == "bajista") && (this.select_divergencia_macd == "alcista")){
+      if((this.select_sobre_cv_rsi == "bajista") && (this.select_divergencia_rsi == "alcista")){
         this.resultado_rsi = "Bajista";
         this.escenarios_bajistas += 1;
         this.observaciones_rsi = "Posible reversión bajista";
         return;
       }
   
-      if((this.select_sobre_cv_rsi == "alcista") && (this.select_divergencia_macd == "bajista")){
+      if((this.select_sobre_cv_rsi == "alcista") && (this.select_divergencia_rsi == "bajista")){
         this.resultado_rsi = "Alcista";
         this.escenarios_alcistas += 1;
+        return;
+      }
+
+      if((this.select_sobre_cv_rsi == "alcista") && (this.select_divergencia_rsi == "neutral")){
+        this.resultado_rsi = "Alcista";
+        this.escenarios_alcistas += 1;
+        return;
+      }
+
+      if((this.select_sobre_cv_rsi == "bajista") && (this.select_divergencia_rsi == "neutral")){
+        this.resultado_rsi = "Bajista";
+        this.escenarios_bajistas += 1;
+        this.observaciones_rsi = "Posible reversión bajista";
         return;
       }
 
@@ -663,34 +676,40 @@ export class IndicadoresTecnicosComponent {
   
     // ==========================
     calcular_kdj(){
-      if(this.select_sobre_cv_rsi == "-")
+      if(this.select_tendencia_kdj == "-")
       {
         this.observaciones_kdj = "Problema con los datos";
         return;
+      }else{
+        this.observaciones_kdj = "-";
       }
       
       // this.observaciones_macd = "Si el precio sube pero el macdumen disminuye, esto podría señalar una falta de interés o una debilidad en la tendencia alcista";
       
-      if((this.select_sobre_cv_mfi == "bajista")){
-        this.resultado_mfi = "Bajista";
-        this.escenarios_bajistas += 1;
-        return;
-      }
-  
-      if((this.select_sobre_cv_mfi == "alcista")){
-        this.resultado_mfi = "Alcista";
+      if((this.select_tendencia_kdj == "encima")){
+        this.resultado_kdj = "Alcista";
+        this.observaciones_kdj = "Señal de compra	- Confirmación alcista si J también está subiendo";
         this.escenarios_alcistas += 1;
         return;
       }
-  
-      if((this.select_sobre_cv_mfi == "bajista") && (this.select_divergencia_macd == "alcista")){
-        this.resultado_mfi = "Bajista";
+
+      if((this.select_tendencia_kdj == "debajo")){
+        this.resultado_kdj = "Bajista";
+        this.observaciones_kdj = "Señal de venta	- Confirmación bajista si J también está cayendo";
         this.escenarios_bajistas += 1;
         return;
       }
-  
-      if((this.select_sobre_cv_mfi == "alcista") && (this.select_divergencia_macd == "bajista")){
-        this.resultado_mfi = "Alcista";
+
+      if((this.select_tendencia_kdj == "encima2")){
+        this.resultado_kdj = "Neutral";
+        this.observaciones_kdj = "Posible señal de debilitamiento de la tendencia alcista	- Confirmación de posible cambio bajista si J también comienza a disminuir";
+        this.escenarios_bajistas += 1;
+        return;
+      }
+
+      if((this.select_tendencia_kdj == "debajo2")){
+        this.resultado_kdj = "Neutral";
+        this.observaciones_kdj = "Posible señal de debilitamiento de la tendencia bajista	- Confirmación de posible cambio alcista si J también comienza a aumentar";
         this.escenarios_alcistas += 1;
         return;
       }

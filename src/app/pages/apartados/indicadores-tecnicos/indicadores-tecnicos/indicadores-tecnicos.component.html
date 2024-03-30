@@ -435,9 +435,12 @@
                           <br>
 
                           <label>Sobrecompra y sobreventa </label><br>
-                          <select class="form-select" [(ngModel)]="select_tendencia_kdj" disabled>
-                            <option value="alcista">La línea %K cruza por encima de la línea %D desde abajo</option>
-                            <option value="bajista">La línea %K cruza por debajo de la línea %D desde arriba</option>
+                          <select class="form-select" [(ngModel)]="select_tendencia_kdj">
+                            <option value="encima">%K cruza por encima de %D desde abajo	</option>
+                            <option value="debajo">%K cruza por debajo de %D desde arriba	</option>
+                            <option value="encima2">%K y %D se mantienen por encima del nivel de sobrecompra (por ejemplo, 80%) y luego %K cruza por debajo de %D		</option>
+                            <option value="debajo2">%K y %D se mantienen por debajo del nivel de sobreventa (por ejemplo, 20%) y luego %K cruza por encima de %D		</option>
+
                           </select>
                 
                           <br><br>
