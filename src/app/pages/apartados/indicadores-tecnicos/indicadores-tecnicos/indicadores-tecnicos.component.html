@@ -1,652 +1,707 @@
+<!-- Start Content-->
+<div class="container-fluid">
 
-<div id="wrapper">
-
-    <!-- ============================================================== -->
-    <!-- Start Page Content here -->
-    <!-- ============================================================== -->
-
-
-    <div class="content-page">
-        <div class="content">
- 
-            <!-- Start Content-->
-            <div class="container-fluid">
-
-              <div class="row">
-                <div class="col-md-8">
-                  <h1> Indicadores tecnicos - TEP</h1>
-                </div>
-                <div class="col-md-4">
-                  <button class="btn btn-success" type="button" (click)="reset_variables()" style="text-align: right;">Resetear variables</button>
-                </div>
-              </div>
-                <div class="container text-center">
-                  <table class="table table-bordered border-primary table-responsive">
-                    <thead class="">
-                      <tr class="thick-row">
-                        <th scope="col">Indicador</th>
-                        <th scope="col">Tendencia</th>
-                        <th scope="col">Comentarios</th>
-                      </tr>
-                    </thead>
-                    <tbody class="">
-                      <tr class="thick-row">
-                        <!-- ===== MA ====== -->
-                        <td scope="row">
-                          <h4>MA - Media móvil</h4>
-                        
-                          <br>
-
-                          <label>Direccion y pendiente</label><br>
-                          <select class="form-select" [(ngModel)]="select_dir_ma">
-                            <option value="asc">Ascencente</option>
-                            <option value="desc">Descentente</option>
-                            <option value="plana">Plana</option>
-                          </select>
-                
-                          <br>
-
-                          <label>Cruce de medias moviles</label><br>
-                          <h6>Media móvil de período más corto con respecto al de período más largo</h6>
-                          <select class="form-select" [(ngModel)]="select_cruce_ma">
-                            <option value="encima">Por encima</option>
-                            <option value="debajo">Por debajo</option>
-                          </select>
-                
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_ma()">Calcular tendencia para MA</button>
-                
-                        </td>
-                        
-                        <td>{{ resultado_ma }}</td>
-                        <td>{{ observaciones_ma }}</td>
-                      </tr>
-                      <!-- =====EMA ====== -->
-                      <tr class="thick-row">
-                        <td scope="row">
-                          <h4>EMA - Media móvil exponencial</h4>
-                
-                          <br>
-
-                          <label>Direccion y pendiente</label><br>
-                          <select class="form-select" [(ngModel)]="select_dir_ema">
-                            <option value="asc">Ascencente</option>
-                            <option value="desc">Descentente</option>
-                            <option value="plana">Plana</option>
-                          </select>
-                
-                          <br>
-
-                          <label>Cruce de medias moviles</label><br>
-                          <h6>Media móvil de período más corto con respecto al de período más largo</h6>
-                          <select class="form-select" [(ngModel)]="select_cruce_entre_ema">
-                            <option value="encima">Corto plazo cruza por encima de la EMA de largo plazo</option>
-                            <option value="debajo">Corto plazo cruza por debajo de la EMA de largo plazo</option>
-                          </select>
-                
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_ema()">Calcular tendencia para EMA</button>
-                
-                          </td>
-                          <td>{{ resultado_ema }}</td>
-                          <td>{{ observaciones_ema }}</td>
-                      </tr>
-                      <!-- ==== WMA ======= -->
-                      <tr class="thick-row">
-                        <td scope="row">
-                          <h4>WMA - Media móvil ponderada</h4>
-                
-                          <br>
-
-                          <label>Dirección de la WMA en relación con el precio</label><br>
-                          <select class="form-select" [(ngModel)]="select_dir_wma">
-                            <option value="asc">Precio por encima de WMA</option>
-                            <option value="desc">Precio por debajo de WMA</option>
-                            <option value="plana">Plana</option>
-                          </select>
-                
-                          <br>
-
-                          <label>Cruce con el precio</label><br>
-                          <!-- <h6>Media móvil de período más corto con respecto al de período más largo</h6> -->
-                          <select class="form-select" [(ngModel)]="select_cruce_precio_wma">
-                            <option value="encima">Cruce alcista, donde el precio cruza por encima de la WMA</option>
-                            <option value="debajo">Cruce bajista, donde el precio cruza por debajo de la WMA</option>
-                            <option value="nulo">Sin cruce</option>
-                          </select>
-                
-                          <br>
-
-                          <label>Cruce de medias moviles</label><br>
-                          <h6>Media móvil de período más corto con respecto al de período más largo</h6>
-                          <select class="form-select" [(ngModel)]="select_cruce_entre_wma">
-                            <option value="encima">Corto plazo cruza por encima de la WMA de largo plazo</option>
-                            <option value="debajo">Corto plazo cruza por debajo de la WMA de largo plazo</option>
-                          </select>
-                
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_wma()">Calcular tendencia para WMA</button>
-                
-                          </td>
-                          <td>{{ resultado_wma }}</td>
-                          <td>{{ observaciones_wma }}</td>
-                      </tr>
-                      <!-- ===== BOLL ====== -->
-                      <tr class="thick-row">
-                        <td scope="row">
-                          
-                          <h4>BOLL - Bandas de Bollinger</h4>
-                
-                          <br>
-
-                          <label>Bandas y precios</label><br>
-                          <select class="form-select" [(ngModel)]="select_precio_boll">
-                            <option value="superior">Precio de la criptomoneda se acerca a la banda superior</option>
-                            <option value="inferior">Precio de la criptomoneda se acerca a la banda inferior</option>    
-                
-                            <option value="encima">Cruce por encima de la banda superior </option>
-                            <option value="debajo">Cruce por debajo de la banda inferior</option>
-                
-                            <option value="ascendente">Cruce ascendente sobre la línea media</option>
-                            <option value="descendente">Cruce descendente bajo la línea media</option>
-                
-                            <option value="neutral">Neutral</option>
-                          </select>
-                
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_boll()">Calcular tendencia para BOLL</button>
-                
-                        </td>
-                        <td>{{ resultado_boll }}</td>
-                        <td>{{ observaciones_boll }}</td>
-                      </tr>
-                      <!-- ===== VWAP ====== -->
-                      <tr class="thick-row">
-                        <td scope="row">
-                          
-                          <h4>VWAP - Precio promedio ponderado por volumen</h4>
-                
-                          <br>
-
-                          <label>Indicador de Tendencia Intradía</label><br>
-                          <select class="form-select" [(ngModel)]="select_tendencia_vwap">
-                            <option value="encima">El precio se mantiene consistentemente por encima del VWAP </option>
-                            <option value="debajo">El precio se mantiene consistentemente por debajo del VWAP</option>
-                            <option value="medio">Plana</option>
-                          </select>
-                
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_vwap()">Calcular tendencia para VWAP</button>
-                
-                        </td>
-                        <td>{{ resultado_vwap }}</td>
-                        <td>{{ observaciones_vwap }}</td>
-                      </tr>
-                      <!-- ====== AVL ===== -->
-                      <tr class="thick-row">
-                        <td scope="row">
-                          
-                          <h4>AVL - Línea de valor promedio</h4>
-                
-                          <br>
-
-                          <label>Tendencia </label><br>
-                          <select class="form-select" [(ngModel)]="select_tendencia_avl">
-                            <option value="subiendo">AVL está subiendo </option>
-                            <option value="cayendo">AVL está cayendo</option>
-                            <option value="lateral">Lateral</option>
-                          </select>
-                
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_avl()">Calcular tendencia para AVL</button>
-                
-                        </td>
-                        <td>{{ resultado_avl }}</td>
-                        <td>{{ observaciones_avl }}</td>
-                      </tr>
-                      <!-- ===== TRIX ====== -->
-                      <tr class="thick-row">
-                        <td scope="row">
-                          <h4>TRIX - Promedio exponencial triple</h4>
-                
-                          <br>
-
-                          <label>Líneas de señal y cruce en cero </label><br>
-                          <select class="form-select" [(ngModel)]="select_tendencia_trix">
-                            <option value="positivo">Valores positivos</option>
-                            <option value="negativo">Valores negativos</option>
-                
-                            <option value="alcista">Línea de señal del TRIX está por encima de cero y el TRIX cruza por encima de cero desde valores negativos</option>
-                            <option value="bajista">Línea de señal del TRIX está por debajo de cero y el TRIX cruza por debajo de cero desde valores positivos</option>
-                            <option value="neutral">Ninguna</option>
-                          </select>
-                
-                          <br>
-
-                          <label>Cruce en cero </label><br>
-                          <select class="form-select" [(ngModel)]="select_cero_trix">
-                            <option value="encima">Cruce por encima de cero</option>
-                            <option value="debajo">Cruce por debajo de cero</option>
-                            <option value="neutral">Ninguna</option>
-                          </select>
-                
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_trix()">Calcular tendencia para TRIX</button>
-                
-                        </td>
-                        <td>{{ resultado_trix }}</td>
-                        <td>{{ observaciones_trix }}</td>
-                      </tr>
-                       <!-- ==== SAR ======= -->
-                       <tr class="thick-row">
-                        <td scope="row">
-                          <h4>SAR - Stop and Reverse</h4>
-                
-                          <br>
-
-                          <label>Tendencia </label><br>
-                          <select class="form-select" [(ngModel)]="select_tendencia_sar">
-                            <option value="alcista">Puntos están por debajo del precio actual en un mercado bajista</option>
-                            <option value="bajista">Puntos están por encima del precio actual en un mercado alcista</option>
-
-                            <option value="alcista2">Puntos están por debajo del precio actual en un mercado alcista</option>
-                            <option value="bajista2">Puntos están por encima del precio actual en un mercado bajista</option>
-
-                          </select>
-                
-                          <br>
-
-                          <label>Cambios de dirección </label><br>
-                          <select class="form-select" [(ngModel)]="select_divergencia_sar">
-                            <option value="debajo">SAR está por encima de los precios y luego se mueve por debajo de ellos</option>
-                            <option value="encima">SAR está por debajo de los precios y luego se mueve por encima de ellos</option>
-                            <option value="ninguna">Ninguna</option>
-                          </select>
-                
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_sar()">Calcular tendencia para SAR</button>
-                
-                        </td>
-                        <td>{{ resultado_sar }}</td>
-                        <td>{{ observaciones_sar }}</td>
-                      </tr>
-                       <!-- ===== VOL ====== -->
-                       <tr class="thick-row">
-                        <td scope="row">
-                          <h4>Vol - Volumen</h4>
-                
-                          <br>
-
-                          <label>Tendencia </label><br>
-                          <select class="form-select" [(ngModel)]="select_tendencia_vol">
-                            <option value="alcista">Precio sube y el volumen también aumenta</option>
-                            <option value="alcista2">Precio cae y el volumen también aumenta</option>
-                            <option value="bajista">Precio cae y el volumen aumenta</option>
-                            <option value="bajista2">Precio sube y el volumen disminuye</option>
-                          </select>
-                
-                          <br>
-
-                          <label>Divergencias </label><br>
-                          <select class="form-select" [(ngModel)]="select_divergencia_vol">
-                            <option value="alcista">Precio sube y el volumen también aumenta</option>
-                            <option value="bajista">El precio sube pero el volumen disminuye</option>
-                          </select>
-                
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_vol()">Calcular tendencia para VOL</button>
-                
-                        </td>
-                        <td>{{ resultado_vol }}</td>
-                        <td>{{ observaciones_vol }}</td>
-                      </tr>
-                      <!-- ===== MACD ====== -->
-                      <tr class="thick-row">
-                        <td scope="row">
-                          <h4>MACD - Media móvil de convergencia/divergencia</h4>
-                
-                          <br>
-
-                          <label>Cruce de las líneas MACD y señal </label><br>
-                          <select class="form-select" [(ngModel)]="select_cruce_macd">
-                            <option value="alcista">MACD (barras) cruza por encima de la línea de señal (DEA)</option>
-                            <option value="bajista">MACD (barras) cruza por debajo de la línea de señal (DEA)</option>
-                          </select>
-                
-                          <br>
-
-                          <label>Divergencia/convergencia </label><br>
-                          <select class="form-select" [(ngModel)]="select_divergencia_macd">
-                            <option value="alcista">El precio de la criptomoneda está alcanzando nuevos máximos, y el MACD está siguiendo</option>
-                            <option value="bajista">El precio de la criptomoneda está alcanzando nuevos máximos, pero el MACD no está siguiendo</option>
-                            <option value="ninguna">Ninguna</option>
-                          </select>
-                
-                          <br>
-
-                          <label>DIF/DEA </label><br>
-                          <select class="form-select" [(ngModel)]="select_dif_dea_macd">
-                            <option value="alcista">Línea de diferencia (DIF) está por encima de la línea de señal (DEA) y ambas líneas están aumentando</option>
-                            <option value="alcista2">Linea DIF está por debajo de la DEA pero ambas líneas están subiendo</option>
-                            <option value="bajista">La línea de diferencia (DIF) está por debajo de la línea de señal (DEA) y ambas líneas están cayendo</option>
-                            <option value="bajista2">La DIF está por encima de la DEA pero ambas líneas están cayendo</option>
-                          </select>
-                
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_macd()">Calcular tendencia para MACD</button>
-                
-                        </td>
-                        
-                        <td>{{ resultado_macd }}</td>
-                        <td>{{ observaciones_macd }}</td>
-                      </tr>
-                
-                       <!-- ====== RSI ===== -->
-                       <tr class="thick-row">
-                        <td scope="row">
-                          <h4>RSI - Índice de fuerza relativa</h4>
-                
-                          <br>
-
-                          <label>Sobrecompra y sobreventa </label><br>
-                          <select class="form-select" [(ngModel)]="select_sobre_cv_rsi">
-                            <option value="alcista">RSI cae por debajo de 30</option>
-                            <option value="bajista">RSI se encuentra por encima de 70</option>
-                            <option value="neutral">RSI entre 30 y 70</option>
-                          </select>
-                
-                          <br>
-
-                          <label>Divergencia/convergencia </label><br>
-                          <select class="form-select" [(ngModel)]="select_divergencia_rsi">
-                            <option value="alcista">El precio de la criptomoneda está alcanzando nuevos máximos, y el MACD está siguiendo</option>
-                            <option value="bajista">El precio de la criptomoneda está alcanzando nuevos máximos, pero el MACD no está siguiendo</option>
-                            <option value="neutral">Ninguna</option>
-                          </select>
-                
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_rsi()">Calcular tendencia para RSI</button>
-                
-                        </td>
-                        
-                        <td>{{ resultado_rsi }}</td>
-                        <td>{{ observaciones_rsi }}</td>
-                
-                      </tr>
-                       <!-- ===== MFI ====== -->
-                       <tr class="thick-row">
-                        <td scope="row">
-                          <h4>MFI - Money Flow Index</h4>
-                
-                          <br>
-
-                          <label>Sobrecompra y sobreventa </label><br>
-                          <select class="form-select" [(ngModel)]="select_sobre_cv_mfi">
-                            <option value="alcista">MFI por debajo de 20</option>
-                            <option value="bajista">MFI por encima de 80</option>
-                            <option value="neutral">Neutral</option>
-                          </select>
-                
-                          <br>
-
-                          <label>MFI y Precio </label><br>
-                          <select class="form-select" [(ngModel)]="select_precio_mfi">
-                            <option value="alcista">MFI y precio subiendo simultáneamente	</option>
-                            <option value="bajista">MFI y precio bajando simultáneamente	</option>
-
-                            <option value="desciende">MFI sube y precio bajando desciende	</option>
-                            <option value="asciende">MFI baja y precio bajando asciende	</option>
-
-                          </select>
-                          <br>
-                          <input class="form-check-input" type="checkbox" value="" (change)="changeStatusMFI1()">
-                          <label class="form-check-label" for="flexCheckDefault">
-                            MFI cruza por encima del nivel de sobrecompra y luego cae por debajo	
-                          </label><br>
-                
-                          <input class="form-check-input" type="checkbox" value="" (change)="changeStatusMFI2()">
-                          <label class="form-check-label" for="">
-                            Incremento en el MFI junto con aumento en el volumen de operaciones
-                          </label><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_mfi()">Calcular tendencia para MFI</button>
-                
-                        </td>
-                        <td>{{ resultado_mfi }}</td>
-                        <td>{{ observaciones_mfi }}</td>
-                      </tr>
-                
-                      <!-- ===== KDJ ====== -->
-                      <tr class="thick-row">
-                        <td scope="row">
-                          <h4>KDJ - Indicador estocástico</h4>
-                
-                          <br>
-
-                          <label>Sobrecompra y sobreventa </label><br>
-                          <select class="form-select" [(ngModel)]="select_tendencia_kdj">
-                            <option value="encima">%K cruza por encima de %D desde abajo	</option>
-                            <option value="debajo">%K cruza por debajo de %D desde arriba	</option>
-                            <option value="encima2">%K y %D se mantienen por encima del nivel de sobrecompra (por ejemplo, 80%) y luego %K cruza por debajo de %D		</option>
-                            <option value="debajo2">%K y %D se mantienen por debajo del nivel de sobreventa (por ejemplo, 20%) y luego %K cruza por encima de %D		</option>
-
-                          </select>
-                
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_kdj()">Calcular tendencia para KDJ</button>
-                
-                        </td>        
-                        <td>{{ resultado_kdj }}</td>
-                        <td>{{ observaciones_kdj }}</td>
-                      </tr>
-                      <!-- ===== OBV - Volumen de balance ====== -->
-                      <tr class="thick-row">
-                        <td scope="row">
-                          <h4>OBV - Volumen de balance</h4>
-                
-                          <br>
-
-                          <label>Confirmación de tendencias </label><br>
-                          <select class="form-select" [(ngModel)]="select_tendencia_obv">
-                            <option value="alcista">El precio está subiendo y el OBV también está subiendo	</option>
-                            <option value="bajista">El precio está bajando y el OBV también está bajando	</option>
-                          </select>
-                
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_obv()">Calcular tendencia para KDJ</button>
-                
-                        </td>        
-                        <td>{{ resultado_obv }}</td>
-                        <td>{{ observaciones_obv }}</td>
-                      </tr>
-                      <!-- ==== CCI ======= -->
-                      <tr class="thick-row">
-                        <td scope="row">
-                          <h4>CCI - Índice de canal de materias primas</h4>
-                
-                          <br>
-
-                          <label>Sobrecompra y sobreventa </label><br>
-                          <select class="form-select" [(ngModel)]="select_valor_cci">
-                            <option value="alcista">La línea %K está por encima del 80% (sobrecompra)	</option>
-                            <option value="bajista">La línea %K está por debajo del 20% (sobreventa)	</option>
-                            <option value="bajista_100">CCI cruza por encima de +100	</option>
-                            <option value="alcista_100">CCI cruza por debajo de -100	</option>
-                          </select>
-                
-                          
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_cci()">Calcular tendencia para cci</button>
-                
-                        </td>
-                        <td>{{ resultado_cci }}</td>
-                        <td>{{ observaciones_cci }}</td>
-                      </tr>
-                      <!-- ====== StochRSI ===== -->
-                      <tr class="thick-row">
-                        <td scope="row">
-                          <h4>StochRSI - Índice de fuerza relativa</h4>
-                
-                          <br>
-
-                          <label>Sobrecompra y sobreventa </label><br>
-                          <select class="form-select" [(ngModel)]="select_valor_stochrsi">
-                            <option value="sobrecompra">Un valor por encima de 0.8</option>
-                            <option value="sobreventa">Un valor por debajo de 0.2</option>
-                            <option value="neutral">RSI entre 30 y 70</option>
-                          </select>
-
-                          <br>
-
-                          <label>K y D </label><br>
-                          <select class="form-select" [(ngModel)]="select_valor_stochrsi_kd">
-                            <option value="alcista">%K cruza por encima de la línea %D</option>
-                            <option value="bajista">%K cruza por debajo de la línea %D</option>
-                          </select>
-                
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_stochrsi()">Calcular tendencia para StochRSI</button>
-                
-                        </td>
-                        
-                        <td>{{ resultado_stochrsi }}</td>
-                        <td>{{ observaciones_stochrsi }}</td>
-                
-                      </tr>
-                      <!-- ==== Señal grupo ======= -->
-                      <tr class="thick-row">
-                        <td scope="row">
-                          <h4>Señal en grupos</h4>
-                
-                          <br>
-
-                          <label>Indique: </label><br>
-                          <select class="form-select" [(ngModel)]="select_senal">
-                            <option value="alcista">Si	</option>
-                            <option value="neutral">No	</option>
-                          </select>
-                
-                          
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_senal_grupos()">Calcular tendencia para señal</button>
-                
-                        </td>
-                        <td>{{ resultado_senal }}</td>
-                        <td>-</td>
-                      </tr>
-                      <!-- ==== Señal grupo ======= -->
-                      <tr class="thick-row">
-                        <td scope="row">
-                          <h4>Prediccion binance</h4>
-                
-                          <br>
-
-                          <label>Indique: </label><br>
-                          <select class="form-select" [(ngModel)]="select_pred_binance">
-                            <option value="alcista">Alcista	</option>
-                            <option value="bajista">Bajista	</option>
-                            <option value="neutral">Neutral	</option>
-                          </select>
-                
-                          
-                          <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_prediccion_binance()">Calcular tendencia para señal</button>
-                
-                        </td>
-                        <td>{{ resultado_pred_binance }}</td>
-                        <td>-</td>
-                      </tr>
-                      <!-- ==== patron ======= -->
-                      <tr class="thick-row">
-                        <td scope="row">
-                          <h4>Patron velas</h4>
-                
-                          <!-- <img src="https://www.earnforex.com/img/articles/blog/Hoja%20de%20referencia%20de%20los%20patrones%20de%20velas%20Forex.jpg" alt=""> -->
-                
-                          <!-- <br>
-
-                          <label>Sobrecompra y sobreventa </label><br>
-                          <select class="form-select" [(ngModel)]="select_valor_cci">
-                            <option value="alcista">La línea %K está por encima del 80% (sobrecompra)	</option>
-                            <option value="bajista">La línea %K está por debajo del 20% (sobreventa)	</option>
-                          </select> -->
-                          
-                          <!-- <br><br>
-                          
-                          <button class="btn btn-primary" type="button" (click)="calcular_cci()">Calcular tendencia para cci</button> -->
-                
-                        </td>
-                        <td>-</td>
-                        <td>-</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <br><br>
-                  <div class="d-grid gap-2">
-                    <br><br>
-                    <!-- ========= Botones ========== -->
-                    <div class="row">
-                      <div class="col-md-6">
-                        <button class="btn btn-primary" type="button" (click)="calcular_tendencia()">Calcular todo</button>
-                      </div>
-                      <div class="col-md-6">
-                        <button class="btn btn-success" type="button" (click)="reset_variables()" style="text-align: right;">Resetear variables</button>
-                      </div>
-                    </div>
-                    <!-- ========= Fin Botones ========== -->
-                  </div>
-                  <br><br>
-                  <table class="table table-dark table-sm">
-                    <thead class="">
-                      <tr class="thick-row">
-                        <td scope="col">Indicadores alcistas</td>
-                        <td scope="col">Indicadores bajistas</td>
-                        <td scope="col">Indicadores neutrales</td>
-                      </tr>
-                    </thead>
-                    <tbody class="">
-                      <tr class="thick-row">       
-                          <td>{{ escenarios_alcistas }}</td>
-                          <td>{{ escenarios_bajistas }}</td>
-                          <td>{{ escenarios_neutrales }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <br><br>
-                
-                </div>
-                
-
-                <br><br>
-
-            </div> <!-- container-fluid -->
-
-        </div> <!-- content -->
-
+  <div class="row">
+    <div class="col-md-8">
+      <h1> Indicadores tecnicos - TEP</h1>
     </div>
+    <div class="col-md-4">
+      <button class="btn btn-success" type="button" (click)="reset_variables()" style="text-align: right;">Resetear variables</button>
+    </div>
+  </div>
+    <div class="container text-center">
+      <table class="table table-bordered border-primary table-responsive">
+        <thead class="">
+          <tr class="thick-row">
+            <th scope="col">Indicador</th>
+            <th scope="col">Tendencia</th>
+            <th scope="col">Comentarios</th>
+          </tr>
+        </thead>
+        <tbody class="">
+          <tr class="thick-row">
+            <!-- ===== MA ====== -->
+            <td scope="row">
+              <h4>MA - Media móvil</h4>
+            
+              <br>
 
-    <!-- ============================================================== -->
-    <!-- End Page content -->
-    <!-- ============================================================== -->
+              <label>Direccion y pendiente (MA corto plazo)</label><br>
+              <select class="form-select" [(ngModel)]="select_dir_ma_corto_plazo">
+                <option value="asc">Ascencente</option>
+                <option value="desc">Descentente</option>
+                <option value="plana">Plana</option>
+              </select>
 
-</div>
+              <br>
+
+              <label>Direccion y pendiente (MA corto plazo)</label><br>
+              <select class="form-select" [(ngModel)]="select_dir_ma_largo_plazo">
+                <option value="asc">Ascencente</option>
+                <option value="desc">Descentente</option>
+                <option value="plana">Plana</option>
+              </select>
+    
+              <br>
+
+              <label>Cruce de medias moviles</label><br>
+              <h6>Media móvil de período más corto con respecto al de período más largo</h6>
+              <select class="form-select" [(ngModel)]="select_cruce_ma">
+                <option value="ninguno" selected>No hay cruce</option>
+                <option value="encima">Por encima</option>
+                <option value="debajo">Por debajo</option>
+              </select>
+    
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_ma()">Calcular tendencia para MA</button>
+    
+            </td>
+            
+            <td>{{ resultado_ma }}</td>
+            <td>{{ observaciones_ma }}</td>
+          </tr>
+          <!-- =====EMA ====== -->
+          <tr class="thick-row">
+            <td scope="row">
+              <h4>EMA - Media móvil exponencial</h4>
+    
+              <br>
+
+              <label>Direccion y pendiente</label><br>
+              <select class="form-select" [(ngModel)]="select_dir_ema">
+                <option value="asc">Ascencente</option>
+                <option value="desc">Descentente</option>
+                <option value="plana">Plana</option>
+              </select>
+    
+              <br>
+
+              <label>Cruce de medias moviles</label><br>
+              <h6>Media móvil de período más corto con respecto al de período más largo</h6>
+              <select class="form-select" [(ngModel)]="select_cruce_entre_ema">
+                <option value="encima">Corto plazo cruza por encima de la EMA de largo plazo</option>
+                <option value="debajo">Corto plazo cruza por debajo de la EMA de largo plazo</option>
+              </select>
+    
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_ema()">Calcular tendencia para EMA</button>
+    
+              </td>
+              <td>{{ resultado_ema }}</td>
+              <td>{{ observaciones_ema }}</td>
+          </tr>
+          <!-- ==== WMA ======= -->
+          <tr class="thick-row">
+            <td scope="row">
+              <h4>WMA - Media móvil ponderada</h4>
+    
+              <br>
+
+              <label>Dirección de la WMA en relación con el precio</label><br>
+              <select class="form-select" [(ngModel)]="select_dir_wma">
+                <option value="asc">Precio por encima de WMA</option>
+                <option value="desc">Precio por debajo de WMA</option>
+                <option value="plana">Plana</option>
+              </select>
+    
+              <br>
+
+              <label>Cruce con el precio</label><br>
+              <!-- <h6>Media móvil de período más corto con respecto al de período más largo</h6> -->
+              <select class="form-select" [(ngModel)]="select_cruce_precio_wma">
+                <option value="encima">Cruce alcista, donde el precio cruza por encima de la WMA</option>
+                <option value="debajo">Cruce bajista, donde el precio cruza por debajo de la WMA</option>
+                <option value="nulo">Sin cruce</option>
+              </select>
+    
+              <br>
+
+              <label>Cruce de medias moviles</label><br>
+              <h6>Media móvil de período más corto con respecto al de período más largo</h6>
+              <select class="form-select" [(ngModel)]="select_cruce_entre_wma">
+                <option value="encima">Corto plazo cruza por encima de la WMA de largo plazo</option>
+                <option value="debajo">Corto plazo cruza por debajo de la WMA de largo plazo</option>
+              </select>
+    
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_wma()">Calcular tendencia para WMA</button>
+    
+              </td>
+              <td>{{ resultado_wma }}</td>
+              <td>{{ observaciones_wma }}</td>
+          </tr>
+          <!-- ===== BOLL ====== -->
+          <tr class="thick-row">
+            <td scope="row">
+              
+              <h4>BOLL - Bandas de Bollinger</h4>
+    
+              <br>
+
+              <label>Bandas y precios</label><br>
+              <select class="form-select" [(ngModel)]="select_precio_boll">
+                <option value="superior">Precio de la criptomoneda se acerca a la banda superior</option>
+                <option value="inferior">Precio de la criptomoneda se acerca a la banda inferior</option>    
+    
+                <option value="encima">Cruce por encima de la banda superior </option>
+                <option value="debajo">Cruce por debajo de la banda inferior</option>
+    
+                <option value="ascendente">Cruce ascendente sobre la línea media</option>
+                <option value="descendente">Cruce descendente bajo la línea media</option>
+    
+                <option value="neutral">Neutral</option>
+              </select>
+    
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_boll()">Calcular tendencia para BOLL</button>
+    
+            </td>
+            <td>{{ resultado_boll }}</td>
+            <td>{{ observaciones_boll }}</td>
+          </tr>
+          <!-- ===== VWAP ====== -->
+          <tr class="thick-row">
+            <td scope="row">
+              
+              <h4>VWAP - Precio promedio ponderado por volumen</h4>
+    
+              <br>
+
+              <label>Indicador de Tendencia Intradía</label><br>
+              <select class="form-select" [(ngModel)]="select_tendencia_vwap">
+                <option value="encima">El precio se mantiene consistentemente por encima del VWAP </option>
+                <option value="debajo">El precio se mantiene consistentemente por debajo del VWAP</option>
+                <option value="encima2">El precio se acerca por encima a VWAP</option>
+                <option value="debajo2">El precio se acerca por debajo a VWAP</option>
+                <option value="medio">Plana</option>
+              </select>
+    
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_vwap()">Calcular tendencia para VWAP</button>
+    
+            </td>
+            <td>{{ resultado_vwap }}</td>
+            <td>{{ observaciones_vwap }}</td>
+          </tr>
+          <!-- ====== AVL ===== -->
+          <tr class="thick-row">
+            <td scope="row">
+              
+              <h4>AVL - Línea de valor promedio</h4>
+    
+              <br>
+
+              <label>Tendencia </label><br>
+              <select class="form-select" [(ngModel)]="select_tendencia_avl">
+                <option value="subiendo">AVL está subiendo </option>
+                <option value="cayendo">AVL está cayendo</option>
+                <option value="lateral">Lateral</option>
+              </select>
+    
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_avl()">Calcular tendencia para AVL</button>
+    
+            </td>
+            <td>{{ resultado_avl }}</td>
+            <td>{{ observaciones_avl }}</td>
+          </tr>
+          <!-- ===== TRIX ====== -->
+          <tr class="thick-row">
+            <td scope="row">
+              <h4>TRIX - Promedio exponencial triple</h4>
+    
+              <br>
+
+              <label>Líneas de señal y cruce en cero </label><br>
+              <select class="form-select" [(ngModel)]="select_tendencia_trix">
+                <option value="positivo">Valores positivos</option>
+                <option value="negativo">Valores negativos</option>
+    
+                <option value="alcista">Línea de señal del TRIX está por encima de cero y el TRIX cruza por encima de cero desde valores negativos</option>
+                <option value="bajista">Línea de señal del TRIX está por debajo de cero y el TRIX cruza por debajo de cero desde valores positivos</option>
+                <option value="neutral">Ninguna</option>
+              </select>
+    
+              <br>
+
+              <label>Cruce en cero </label><br>
+              <select class="form-select" [(ngModel)]="select_cero_trix">
+                <option value="encima">Cruce por encima de cero</option>
+                <option value="debajo">Cruce por debajo de cero</option>
+                <option value="neutral">Ninguna</option>
+              </select>
+    
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_trix()">Calcular tendencia para TRIX</button>
+    
+            </td>
+            <td>{{ resultado_trix }}</td>
+            <td>{{ observaciones_trix }}</td>
+          </tr>
+            <!-- ==== SAR ======= -->
+            <tr class="thick-row">
+            <td scope="row">
+              <h4>SAR - Stop and Reverse</h4>
+    
+              <br>
+
+              <label>Tendencia </label><br>
+              <select class="form-select" [(ngModel)]="select_tendencia_sar">
+                <option value="alcista">Puntos están por debajo del precio actual en un mercado bajista</option>
+                <option value="bajista">Puntos están por encima del precio actual en un mercado alcista</option>
+
+                <option value="alcista2">Puntos están por debajo del precio actual en un mercado alcista</option>
+                <option value="bajista2">Puntos están por encima del precio actual en un mercado bajista</option>
+
+              </select>
+    
+              <br>
+
+              <label>Cambios de dirección </label><br>
+              <select class="form-select" [(ngModel)]="select_divergencia_sar">
+                <option value="debajo">SAR está por encima de los precios y luego se mueve por debajo de ellos</option>
+                <option value="encima">SAR está por debajo de los precios y luego se mueve por encima de ellos</option>
+                <option value="ninguna">Ninguna</option>
+              </select>
+    
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_sar()">Calcular tendencia para SAR</button>
+    
+            </td>
+            <td>{{ resultado_sar }}</td>
+            <td>{{ observaciones_sar }}</td>
+          </tr>
+            <!-- ===== VOL ====== -->
+            <tr class="thick-row">
+            <td scope="row">
+              <h4>Vol - Volumen</h4>
+    
+              <br>
+
+              <label>Tendencia </label><br>
+              <select class="form-select" [(ngModel)]="select_tendencia_vol">
+                <option value="alcista">Precio sube y el volumen también aumenta</option>
+                <option value="alcista2">Precio cae y el volumen también aumenta</option>
+                <option value="bajista">Precio cae y el volumen aumenta</option>
+                <option value="bajista2">Precio sube y el volumen disminuye</option>
+              </select>
+    
+              <br>
+
+              <label>Divergencias </label><br>
+              <select class="form-select" [(ngModel)]="select_divergencia_vol">
+                <option value="alcista">Precio sube y el volumen también aumenta</option>
+                <option value="bajista">El precio sube pero el volumen disminuye</option>
+              </select>
+    
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_vol()">Calcular tendencia para VOL</button>
+    
+            </td>
+            <td>{{ resultado_vol }}</td>
+            <td>{{ observaciones_vol }}</td>
+          </tr>
+          <!-- ===== MACD ====== -->
+          <tr class="thick-row">
+            <td scope="row">
+              <h4>MACD - Media móvil de convergencia/divergencia</h4>
+    
+              <br>
+
+              <label>Cruce de las líneas MACD y señal </label><br>
+              <select class="form-select" [(ngModel)]="select_cruce_macd">
+                <option value="alcista">MACD (barras) cruza por encima de la línea de señal (DEA)</option>
+                <option value="bajista">MACD (barras) cruza por debajo de la línea de señal (DEA)</option>
+              </select>
+    
+              <br>
+
+              <label>Divergencia/convergencia </label><br>
+              <select class="form-select" [(ngModel)]="select_divergencia_macd">
+                <option value="alcista">El precio de la criptomoneda está alcanzando nuevos máximos, y el MACD está siguiendo</option>
+                <option value="bajista">El precio de la criptomoneda está alcanzando nuevos máximos, pero el MACD no está siguiendo</option>
+                <option value="ninguna">Ninguna</option>
+              </select>
+    
+              <br>
+
+              <label>DIF/DEA </label><br>
+              <select class="form-select" [(ngModel)]="select_dif_dea_macd">
+                <option value="alcista">Línea de diferencia (DIF) está por encima de la línea de señal (DEA) y ambas líneas están aumentando</option>
+                <option value="alcista2">Linea DIF está por debajo de la DEA pero ambas líneas están subiendo</option>
+                <option value="bajista">La línea de diferencia (DIF) está por debajo de la línea de señal (DEA) y ambas líneas están cayendo</option>
+                <option value="bajista2">La DIF está por encima de la DEA pero ambas líneas están cayendo</option>
+              </select>
+    
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_macd()">Calcular tendencia para MACD</button>
+    
+            </td>
+            
+            <td>{{ resultado_macd }}</td>
+            <td>{{ observaciones_macd }}</td>
+          </tr>
+    
+            <!-- ====== RSI ===== -->
+            <tr class="thick-row">
+            <td scope="row">
+              <h4>RSI - Índice de fuerza relativa</h4>
+    
+              <br>
+
+              <label>Sobrecompra y sobreventa </label><br>
+              <select class="form-select" [(ngModel)]="select_sobre_cv_rsi">
+                <option value="alcista">RSI cae por debajo de 30</option>
+                <option value="bajista">RSI se encuentra por encima de 70</option>
+                <option value="neutral">RSI entre 30 y 70</option>
+              </select>
+    
+              <br>
+
+              <label>Divergencia/convergencia </label><br>
+              <select class="form-select" [(ngModel)]="select_divergencia_rsi">
+                <option value="alcista">El precio de la criptomoneda está alcanzando nuevos máximos, y el MACD está siguiendo</option>
+                <option value="bajista">El precio de la criptomoneda está alcanzando nuevos máximos, pero el MACD no está siguiendo</option>
+                <option value="neutral">Ninguna</option>
+              </select>
+    
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_rsi()">Calcular tendencia para RSI</button>
+    
+            </td>
+            
+            <td>{{ resultado_rsi }}</td>
+            <td>{{ observaciones_rsi }}</td>
+    
+          </tr>
+            <!-- ===== MFI ====== -->
+            <tr class="thick-row">
+            <td scope="row">
+              <h4>MFI - Money Flow Index</h4>
+    
+              <br>
+
+              <label>Sobrecompra y sobreventa </label><br>
+              <select class="form-select" [(ngModel)]="select_sobre_cv_mfi">
+                <option value="alcista">MFI por debajo de 20</option>
+                <option value="bajista">MFI por encima de 80</option>
+                <option value="neutral">Neutral</option>
+              </select>
+    
+              <br>
+
+              <label>MFI y Precio </label><br>
+              <select class="form-select" [(ngModel)]="select_precio_mfi">
+                <option value="alcista">MFI y precio subiendo simultáneamente	</option>
+                <option value="bajista">MFI y precio bajando simultáneamente	</option>
+
+                <option value="desciende">MFI sube y precio bajando desciende	</option>
+                <option value="asciende">MFI baja y precio bajando asciende	</option>
+
+              </select>
+              <br>
+              <input class="form-check-input" type="checkbox" value="" (change)="changeStatusMFI1()">
+              <label class="form-check-label" for="flexCheckDefault">
+                MFI cruza por encima del nivel de sobrecompra y luego cae por debajo	
+              </label><br>
+    
+              <input class="form-check-input" type="checkbox" value="" (change)="changeStatusMFI2()">
+              <label class="form-check-label" for="">
+                Incremento en el MFI junto con aumento en el volumen de operaciones
+              </label><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_mfi()">Calcular tendencia para MFI</button>
+    
+            </td>
+            <td>{{ resultado_mfi }}</td>
+            <td>{{ observaciones_mfi }}</td>
+          </tr>
+    
+          <!-- ===== KDJ ====== -->
+          <tr class="thick-row">
+            <td scope="row">
+              <h4>KDJ - Indicador estocástico</h4>
+    
+              <br>
+
+              <label>Sobrecompra y sobreventa </label><br>
+              <select class="form-select" [(ngModel)]="select_tendencia_kdj">
+                <option value="encima">%K cruza por encima de %D desde abajo	</option>
+                <option value="debajo">%K cruza por debajo de %D desde arriba	</option>
+                <option value="encima2">%K y %D se mantienen por encima del nivel de sobrecompra (por ejemplo, 80%) y luego %K cruza por debajo de %D		</option>
+                <option value="debajo2">%K y %D se mantienen por debajo del nivel de sobreventa (por ejemplo, 20%) y luego %K cruza por encima de %D		</option>
+
+              </select>
+    
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_kdj()">Calcular tendencia para KDJ</button>
+    
+            </td>        
+            <td>{{ resultado_kdj }}</td>
+            <td>{{ observaciones_kdj }}</td>
+          </tr>
+          <!-- ===== OBV - Volumen de balance ====== -->
+          <tr class="thick-row">
+            <td scope="row">
+              <h4>OBV - Volumen de balance</h4>
+    
+              <br>
+
+              <label>Confirmación de tendencias </label><br>
+              <select class="form-select" [(ngModel)]="select_tendencia_obv">
+                <option value="alcista">El precio está subiendo y el OBV también está subiendo	</option>
+                <option value="bajista">El precio está bajando y el OBV también está bajando	</option>
+              </select>
+    
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_obv()">Calcular tendencia para KDJ</button>
+    
+            </td>        
+            <td>{{ resultado_obv }}</td>
+            <td>{{ observaciones_obv }}</td>
+          </tr>
+          <!-- ==== CCI ======= -->
+          <tr class="thick-row">
+            <td scope="row">
+              <h4>CCI - Índice de canal de materias primas</h4>
+    
+              <br>
+
+              <label>Sobrecompra y sobreventa </label><br>
+              <select class="form-select" [(ngModel)]="select_valor_cci">
+                <option value="alcista">La línea %K está por encima del 80% (sobrecompra)	</option>
+                <option value="bajista">La línea %K está por debajo del 20% (sobreventa)	</option>
+                <option value="bajista_100">CCI cruza por encima de +100	</option>
+                <option value="alcista_100">CCI cruza por debajo de -100	</option>
+              </select>
+    
+              
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_cci()">Calcular tendencia para cci</button>
+    
+            </td>
+            <td>{{ resultado_cci }}</td>
+            <td>{{ observaciones_cci }}</td>
+          </tr>
+          <!-- ====== StochRSI ===== -->
+          <tr class="thick-row">
+            <td scope="row">
+              <h4>StochRSI - Índice de fuerza relativa</h4>
+    
+              <br>
+
+              <label>Sobrecompra y sobreventa </label><br>
+              <select class="form-select" [(ngModel)]="select_valor_stochrsi">
+                <option value="sobrecompra">Un valor por encima de 0.8</option>
+                <option value="sobreventa">Un valor por debajo de 0.2</option>
+                <option value="neutral">RSI entre 30 y 70</option>
+              </select>
+
+              <br>
+
+              <label>K y D </label><br>
+              <select class="form-select" [(ngModel)]="select_valor_stochrsi_kd">
+                <option value="alcista">%K cruza por encima de la línea %D</option>
+                <option value="bajista">%K cruza por debajo de la línea %D</option>
+              </select>
+    
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_stochrsi()">Calcular tendencia para StochRSI</button>
+    
+            </td>
+            
+            <td>{{ resultado_stochrsi }}</td>
+            <td>{{ observaciones_stochrsi }}</td>
+    
+          </tr>
+          <!-- ==== Señal grupo ======= -->
+          <tr class="thick-row">
+            <td scope="row">
+              <h4>Señal en grupos</h4>
+    
+              <br>
+
+              <label>Indique: </label><br>
+              <select class="form-select" [(ngModel)]="select_senal">
+                <option value="alcista">Si	</option>
+                <option value="neutral">No	</option>
+              </select>
+    
+              
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_senal_grupos()">Calcular tendencia para señal</button>
+    
+            </td>
+            <td>{{ resultado_senal }}</td>
+            <td>-</td>
+          </tr>
+          <!-- ====  ======= -->
+          <tr class="thick-row">
+            <td scope="row">
+              <h4>Prediccion binance</h4>
+    
+              <br>
+
+              <label>Indique: </label><br>
+              <select class="form-select" [(ngModel)]="select_pred_binance">
+                <option value="alcista">Alcista	</option>
+                <option value="bajista">Bajista	</option>
+                <option value="neutral">Neutral	</option>
+              </select>
+    
+              
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_prediccion_binance()">Calcular tendencia para señal</button>
+    
+            </td>
+            <td>{{ resultado_pred_binance }}</td>
+            <td>-</td>
+          </tr>
+          <!-- ==== patron ======= -->
+          <tr class="thick-row">
+            <td scope="row">
+              <h4>Patron velas - vela martillo</h4>
+    
+              <img src="../../../../../assets/images/martillo.png" width="100" height="50">
+              <a href="https://ibb.co/1nCsrnS">Ir a página web</a>
+              
+              <br>
+              Condiciones
+
+              - viene de una fuerte tendencia bajista
+              - la sombra es al menos dos veces mas larga que el cuerpo
+              - Es mejor si la vela martillo no contiene cabeza
+              - Puede ser verde o roja
+
+              <label>Condiciones </label><br>
+              <select class="form-select" [(ngModel)]="select_valor_vela_martillo">
+                <option value="alcista">Cumple con la condiciones	</option>
+                <option value="bajista">No cumple	</option>
+              </select>
+              
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_vela_martillo()">Calcular tendencia para vela martillo</button>
+    
+            </td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <!-- ==== patron ======= -->
+          <tr class="thick-row">
+            <td scope="row">
+              <h4>Patron velas - Hombre ahorcado</h4>
+    
+              <img src="../../../../../assets/images/hanging-man-candlestick.jpg" width="100" height="50">
+              <a href="https://ibb.co/y00DzJ4">Ir a página web</a>
+              
+              <br>
+              Condiciones
+
+              - viene de una fuerte tendencia alcista
+              
+
+              <label>Condiciones </label><br>
+              <select class="form-select" [(ngModel)]="select_valor_vela_martillo">
+                <option value="alcista">Cumple con la condiciones	</option>
+                <option value="bajista">No cumple	</option>
+              </select>
+              
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_vela_martillo()">Calcular tendencia para vela martillo</button>
+    
+            </td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <!-- ==== patron ======= -->
+          <tr class="thick-row">
+            <td scope="row">
+              <h4>Patron velas - Velas envolventes</h4>
+    
+              <img src="../../../../../assets/images/hanging-man-candlestick.jpg" width="100" height="50">
+              <a href="https://ibb.co/V2vYxKH">Ir a página web</a>
+              
+              <br>
+              Condiciones
+
+              - viene de una fuerte tendencia alcista
+              
+
+              <label>Condiciones </label><br>
+              <select class="form-select" [(ngModel)]="select_valor_vela_martillo">
+                <option value="alcista">Cumple con la condiciones	</option>
+                <option value="bajista">No cumple	</option>
+              </select>
+              
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_vela_martillo()">Calcular tendencia para vela martillo</button>
+    
+            </td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+      <br><br>
+      <div class="d-grid gap-2">
+        <br><br>
+        <!-- ========= Botones ========== -->
+        <div class="row">
+          <div class="col-md-6">
+            <button class="btn btn-primary" type="button" (click)="calcular_tendencia()">Calcular todo</button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-success" type="button" (click)="reset_variables()" style="text-align: right;">Resetear variables</button>
+          </div>
+        </div>
+        <!-- ========= Fin Botones ========== -->
+      </div>
+      <br><br>
+      <table class="table table-dark table-sm">
+        <thead class="">
+          <tr class="thick-row">
+            <td scope="col">Indicadores alcistas</td>
+            <td scope="col">Indicadores bajistas</td>
+            <td scope="col">Indicadores neutrales</td>
+          </tr>
+        </thead>
+        <tbody class="">
+          <tr class="thick-row">       
+              <td>{{ escenarios_alcistas }}</td>
+              <td>{{ escenarios_bajistas }}</td>
+              <td>{{ escenarios_neutrales }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <br><br>
+    
+    </div>
+    
+
+    <br><br>
+
+</div> <!-- container-fluid -->
+
 
 <!-- Modal - confimacion -->
 <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">

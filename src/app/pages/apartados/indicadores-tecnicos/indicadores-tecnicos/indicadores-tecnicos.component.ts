@@ -17,7 +17,8 @@ export class IndicadoresTecnicosComponent {
   
   
     // media movil
-    select_dir_ma = "-";
+    select_dir_ma_corto_plazo = "-";
+    select_dir_ma_largo_plazo = "-";
     select_cruce_ma = "-";
     observaciones_ma = "-";
   
@@ -123,9 +124,14 @@ export class IndicadoresTecnicosComponent {
     select_pred_binance = "-";
     resultado_pred_binance = "-";
 
+    // 
+    select_valor_vela_martillo = "-";
+    resultado_vela_martillo = "-"
+    observaciones_vela_martillo = "-";
+
     // ==========================
     calcular_ma(){
-      if(this.select_dir_ma == "-")
+      if(this.select_dir_ma_corto_plazo == "-")
       {
         this.observaciones_ma = "Problema con los datos";
         return;
@@ -133,23 +139,23 @@ export class IndicadoresTecnicosComponent {
       this.observaciones_ma = "-";
   
   
-      if(this.select_dir_ma == "asc"){
+      if((this.select_dir_ma_corto_plazo == "asc") && (this.select_dir_ma_largo_plazo == "asc") && (this.select_cruce_ma == "encima")){
         this.resultado_ma = "Alcista";
+        this.observaciones_ma = "Golden Cross (Cruce Dorado) -  Esto se interpreta como una señal alcista, indicando un posible cambio de tendencia de bajista a alcista";
         this.escenarios_alcistas += 1;
         return;
       }
   
-      if(this.select_dir_ma == "desc"){
+      if((this.select_dir_ma_corto_plazo == "desc") && (this.select_dir_ma_largo_plazo == "desc") && (this.select_cruce_ma == "debajo")){
         this.resultado_ma = "Bajista";
+        this.observaciones_ma = "Death Cross (Cruce de la Muerte) - se interpreta como una señal de que la tendencia alcista podría estar llegando a su fin y que una tendencia bajista podría estar en camino";
+        this.escenarios_bajistas += 1;
         return;
       }
-  
-      if(this.select_cruce_ma == "encima"){
-          this.resultado_ma = "Ascista";
-          this.escenarios_alcistas += 1;
-      }else{
-        this.resultado_ma = "Bajista";
-      }
+
+      this.resultado_ma = "Neutral";
+      this.observaciones_ma = "-";
+      this.escenarios_neutrales += 1;
       
     }
   
@@ -294,13 +300,33 @@ export class IndicadoresTecnicosComponent {
       }else{
         this.observaciones_vwap = "-";
       }
-  
-      if((this.select_tendencia_vwap == "encima")){
-        this.resultado_vwap = "Alcista";
-        this.escenarios_alcistas += 1;
-      }else{
-        this.resultado_vwap = "Bajista";
-        this.escenarios_bajistas += 1;
+
+      switch (this.select_tendencia_vwap) {
+        case "encima":
+            this.resultado_vwap = "Alcista";
+            this.observaciones_boll = "-";
+            this.escenarios_alcistas += 1;
+            break;
+         case "debajo":
+            this.resultado_vwap = "Bajista";
+            this.observaciones_vwap = "-";
+            this.escenarios_bajistas += 1;
+            break;
+        case "encima2":
+          this.resultado_vwap = "Neutral";
+          this.observaciones_vwap = " podría sugerir que el precio está encontrando un soporte en el VWAP - presión de venta está disminuyendo y que el precio podría comenzar a subir - Zona de consolidación - Confirmación de tendencia bajista";
+          this.escenarios_neutrales += 1;
+          break;
+        case "debajo2":
+          this.resultado_vwap = "Neutral";
+          this.observaciones_vwap = "podría indicar que el precio está encontrando resistencia en el VWAP - Reversión bajista potencial - Confirmación de tendencia alcista";
+          this.escenarios_neutrales += 1;
+          break;
+        default:
+          this.resultado_vwap = "Neutral";
+          this.observaciones_vwap = "-";
+          this.escenarios_neutrales += 1;
+          break;
       }
   
     }
@@ -845,6 +871,21 @@ export class IndicadoresTecnicosComponent {
         this.escenarios_neutrales += 1;
       }
 
+  
+    }
+
+    // ==========================
+    calcular_vela_martillo(){
+      
+      // this.observaciones_macd = "Si el precio sube pero el macdumen disminuye, esto podría señalar una falta de interés o una debilidad en la tendencia alcista";
+      
+      if((this.select_valor_vela_martillo == "alcista")){
+        this.resultado_vela_martillo = "Alcista";
+        this.escenarios_alcistas += 1;
+      }else{
+        this.resultado_vela_martillo = "Neutral";
+      }
+  
   
     }
     // ==========================
