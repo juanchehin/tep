@@ -643,7 +643,7 @@
               <br>
               Condiciones
 
-              - viene de una fuerte tendencia alcista
+              - Viene de una fuerte y definida tendencia alcista/bajista
               
 
               <label>Condiciones </label><br>
@@ -660,6 +660,76 @@
             <td>-</td>
             <td>-</td>
           </tr>
+          <!-- ====  Dark Cloud Cover ======= -->
+          <tr class="thick-row">
+            <td scope="row">
+              <h4>Patron velas - Dark Cloud Cover</h4>
+    
+              <a href="https://ibb.co/4pchx8y">Ir a página web</a>
+              <a href="https://ibb.co/vzwD17Z">Ir a página web</a>
+
+              
+              <br>
+              Condiciones
+
+              - Debe haber una tendencia alcista previa o una congestión en el mercado.
+              - La primera vela debe ser una vela verde fuerte.
+              - La segunda vela debe ser una vela roja que se abra por encima de la vela verde anterior.
+              - La vela roja debe cerrar profundamente dentro del cuerpo verde anterior.
+              - Cuanto mayor sea la penetración del cuerpo rojo en el verde, más fiable será el patrón.
+              - La vela roja debe cerrar por debajo del punto medio de la vela verde.
+              - Debe haber un volumen significativo, lo que indica una disminución en la presión de compra.
+              - Idealmente, la vela roja se abrirá por encima de una resistencia importante.
+              - El patrón tiene mayor probabilidad de éxito si se forma en un nivel clave del mercado.
+              - Se recomienda esperar confirmación adicional antes de tomar una decisión de operación.
+              
+
+              <label>Condiciones </label><br>
+              <select class="form-select" [(ngModel)]="select_valor_vela_martillo">
+                <option value="alcista">Cumple con la condiciones	</option>
+                <option value="bajista">No cumple	</option>
+              </select>
+              
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_vela_martillo()">Calcular tendencia para vela martillo</button>
+    
+            </td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+         <!-- ====  6 - Piercing Pattern ======= -->
+         <tr class="thick-row">
+          <td scope="row">
+            <h4>Patron velas - Piercing Pattern</h4>
+  
+            <a href="https://ibb.co/MGdvwFD">Ir a página web</a>
+
+            
+            <br>
+            Condiciones
+
+            - Debe haber una tendencia bajista previa en el mercado.
+            La primera vela debe ser roja y la segunda vela debe ser verde.
+            La vela verde debe abrir a la baja, preferiblemente por debajo del mínimo de la vela roja anterior.
+            La vela verde debe penetrar en el cuerpo real de la vela roja anterior, idealmente más del 50%.
+            La penetración indica una posible inversión alcista.
+            Se debe buscar operar en niveles clave para aumentar las probabilidades de éxito.
+
+            <label>Condiciones </label><br>
+            <select class="form-select" [(ngModel)]="select_valor_vela_martillo">
+              <option value="alcista">Cumple con la condiciones	</option>
+              <option value="bajista">No cumple	</option>
+            </select>
+            
+            <br><br>
+            
+            <button class="btn btn-primary" type="button" (click)="calcular_vela_martillo()">Calcular tendencia para vela martillo</button>
+  
+          </td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
         </tbody>
       </table>
       <br><br>
