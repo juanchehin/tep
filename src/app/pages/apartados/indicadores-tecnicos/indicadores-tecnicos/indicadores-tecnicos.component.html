@@ -44,12 +44,16 @@
     
               <br>
 
-              <label>Cruce de medias moviles</label><br>
+              <label>Relacion entre medias moviles</label><br>
               <h6>Media móvil de período más corto con respecto al de período más largo</h6>
               <select class="form-select" [(ngModel)]="select_cruce_ma">
                 <option value="ninguno" selected>No hay cruce</option>
-                <option value="encima">Por encima</option>
-                <option value="debajo">Por debajo</option>
+                <option value="encima">Cruce por encima</option>
+                <option value="debajo">Cruce por debajo</option>
+
+                <option value="encima2">(MA) de corto plazo se encuentra por encima del MA de largo plazo,sin cruce</option>
+                <option value="debajo2">(MA) de corto plazo se encuentra por debajo del MA de largo plazo,sin cruce</option>
+
               </select>
     
               <br><br>
@@ -551,7 +555,7 @@
             <td>{{ resultado_senal }}</td>
             <td>-</td>
           </tr>
-          <!-- ====  ======= -->
+          <!-- ==== Prediccion binance ======= -->
           <tr class="thick-row">
             <td scope="row">
               <h4>Prediccion binance</h4>
@@ -579,8 +583,8 @@
             <td scope="row">
               <h4>Patron velas - vela martillo</h4>
     
-              <img src="../../../../../assets/images/martillo.png" width="100" height="50">
-              <a href="https://ibb.co/1nCsrnS">Ir a página web</a>
+              <img src="../../../../../assets/images/martillo.png" width="200" height="100">
+              <a href="https://ibb.co/1nCsrnS"target="_blank">Ir a página web</a>
               
               <br>
               Condiciones
@@ -609,8 +613,8 @@
             <td scope="row">
               <h4>Patron velas - Hombre ahorcado</h4>
     
-              <img src="../../../../../assets/images/hanging-man-candlestick.jpg" width="100" height="50">
-              <a href="https://ibb.co/y00DzJ4">Ir a página web</a>
+              <img src="../../../../../assets/images/hanging-man-candlestick.jpg" width="200" height="100">
+              <a href="https://ibb.co/y00DzJ4"target="_blank">Ir a página web</a>
               
               <br>
               Condiciones
@@ -632,13 +636,13 @@
             <td>-</td>
             <td>-</td>
           </tr>
-          <!-- ==== patron ======= -->
+          <!-- ==== patron Velas envolventes ======= -->
           <tr class="thick-row">
             <td scope="row">
               <h4>Patron velas - Velas envolventes</h4>
     
-              <img src="../../../../../assets/images/hanging-man-candlestick.jpg" width="100" height="50">
-              <a href="https://ibb.co/V2vYxKH">Ir a página web</a>
+              <img src="../../../../../assets/images/hanging-man-candlestick.jpg" width="200" height="100">
+              <a href="https://ibb.co/V2vYxKH"target="_blank">Ir a página web</a>
               
               <br>
               Condiciones
@@ -665,8 +669,8 @@
             <td scope="row">
               <h4>Patron velas - Dark Cloud Cover</h4>
     
-              <a href="https://ibb.co/4pchx8y">Ir a página web</a>
-              <a href="https://ibb.co/vzwD17Z">Ir a página web</a>
+              <a href="https://ibb.co/4pchx8y" target="_blank">Ir a página web</a>
+              <a href="https://ibb.co/vzwD17Z" target="_blank">Ir a página web</a>
 
               
               <br>
@@ -703,7 +707,7 @@
           <td scope="row">
             <h4>Patron velas - Piercing Pattern</h4>
   
-            <a href="https://ibb.co/MGdvwFD">Ir a página web</a>
+            <a href="https://ibb.co/MGdvwFD"target="_blank">Ir a página web</a>
 
             
             <br>
@@ -716,6 +720,30 @@
             La penetración indica una posible inversión alcista.
             Se debe buscar operar en niveles clave para aumentar las probabilidades de éxito.
 
+            <label>Condiciones </label><br>
+            <select class="form-select" [(ngModel)]="select_valor_vela_martillo">
+              <option value="alcista">Cumple con la condiciones	</option>
+              <option value="bajista">No cumple	</option>
+            </select>
+            
+            <br><br>
+            
+            <button class="btn btn-primary" type="button" (click)="calcular_vela_martillo()">Calcular tendencia para vela martillo</button>
+  
+          </td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <!-- ==== canal Keltner ======= -->
+        <tr class="thick-row">
+          <td scope="row">
+            <h4>Canal Keltner</h4>
+            <!-- pedir a chatgpt q haga el algoritmo para calcuilar -->
+            
+            <br>
+            Condiciones
+
+            -
             <label>Condiciones </label><br>
             <select class="form-select" [(ngModel)]="select_valor_vela_martillo">
               <option value="alcista">Cumple con la condiciones	</option>

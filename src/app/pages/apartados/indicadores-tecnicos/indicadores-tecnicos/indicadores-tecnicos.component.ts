@@ -153,6 +153,27 @@ export class IndicadoresTecnicosComponent {
         return;
       }
 
+      if((this.select_dir_ma_corto_plazo == "desc") && (this.select_dir_ma_largo_plazo == "desc") && (this.select_cruce_ma == "debajo")){
+        this.resultado_ma = "Bajista";
+        this.observaciones_ma = "Death Cross (Cruce de la Muerte) - se interpreta como una señal de que la tendencia alcista podría estar llegando a su fin y que una tendencia bajista podría estar en camino";
+        this.escenarios_bajistas += 1;
+        return;
+      }
+      
+      if((this.select_dir_ma_corto_plazo == "asc") && (this.select_dir_ma_largo_plazo == "asc") && (this.select_cruce_ma == "encima2")){
+        this.resultado_ma = "Alcista";
+        this.observaciones_ma = "Generalmente indica una tendencia alcista fuerte y sostenida en el precio del activo";
+        this.escenarios_alcistas += 1;
+        return;
+      }
+
+      if((this.select_dir_ma_corto_plazo == "desc") && (this.select_dir_ma_largo_plazo == "desc") && (this.select_cruce_ma == "encima2")){
+        this.resultado_ma = "Neutral";
+        this.observaciones_ma = "Consolidación o debilidad en la tendencia del precio del activo";
+        this.escenarios_neutrales += 1;
+        return;
+      }
+
       this.resultado_ma = "Neutral";
       this.observaciones_ma = "-";
       this.escenarios_neutrales += 1;
