@@ -378,7 +378,8 @@
                 <option value="bajista">El precio de la criptomoneda está alcanzando nuevos máximos, pero el MACD no está siguiendo</option>
                 <option value="neutral">Ninguna</option>
               </select>
-    
+              <a href="https://www.coinglass.com/pro/i/RsiHeatMap"target="_blank">Ir a página web</a>
+
               <br><br>
               
               <button class="btn btn-primary" type="button" (click)="calcular_rsi()">Calcular tendencia para RSI</button>
@@ -578,7 +579,7 @@
             <td>{{ resultado_pred_binance }}</td>
             <td>-</td>
           </tr>
-          <!-- ==== patron ======= -->
+          <!-- ==== patron - vela martillo ======= -->
           <tr class="thick-row">
             <td scope="row">
               <h4>Patron velas - vela martillo</h4>
@@ -608,7 +609,7 @@
             <td>-</td>
             <td>-</td>
           </tr>
-          <!-- ==== patron ======= -->
+          <!-- ==== patron - Hombre ahorcado ======= -->
           <tr class="thick-row">
             <td scope="row">
               <h4>Patron velas - Hombre ahorcado</h4>
@@ -745,7 +746,7 @@
 
             -
             <label>Condiciones </label><br>
-            <select class="form-select" [(ngModel)]="select_valor_vela_martillo">
+            <select class="form-select" [(ngModel)]="select_valor_keltner">
               <option value="alcista">Cumple con la condiciones	</option>
               <option value="bajista">No cumple	</option>
             </select>
