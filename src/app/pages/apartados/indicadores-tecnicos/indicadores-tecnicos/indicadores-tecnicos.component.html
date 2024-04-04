@@ -534,6 +534,30 @@
             <td>{{ observaciones_stochrsi }}</td>
     
           </tr>
+          <!-- ====== ATR ===== -->
+          <tr class="thick-row">
+            <td scope="row">
+              <h4>ATR - </h4>
+    
+              <br>
+
+              <label>Sobrecompra y sobreventa </label><br>
+              <select class="form-select" [(ngModel)]="select_valor_stochrsi" disabled>
+                <option value="sobrecompra">Un valor por encima de 0.8</option>
+                <option value="sobreventa">Un valor por debajo de 0.2</option>
+                <option value="neutral">RSI entre 30 y 70</option>
+              </select>
+    
+              <br><br>
+              
+              <button class="btn btn-primary" type="button" (click)="calcular_stochrsi()" disabled>Calcular tendencia para StochRSI</button>
+    
+            </td>
+            
+            <td>-</td>
+            <td>-</td>
+    
+          </tr>
           <!-- ==== Señal grupo ======= -->
           <tr class="thick-row">
             <td scope="row">
@@ -739,6 +763,8 @@
         <tr class="thick-row">
           <td scope="row">
             <h4>Canal Keltner</h4>
+            <a href="https://terabox.com/s/1wwNHwrduNqWP4eu8Wpe8bA"target="_blank">Ir a página web</a>
+
             <!-- pedir a chatgpt q haga el algoritmo para calcuilar -->
             
             <br>
