@@ -129,6 +129,9 @@ export class IndicadoresTecnicosComponent {
     resultado_vela_martillo = "-"
     observaciones_vela_martillo = "-";
 
+    // 
+    select_valor_keltner = "-";
+
     // ==========================
     calcular_ma(){
       if(this.select_dir_ma_corto_plazo == "-")

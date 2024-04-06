@@ -13,6 +13,7 @@ import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
   declarations: [
     AppComponent,

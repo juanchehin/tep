@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { IndicadoresTecnicosComponent } from './apartados/indicadores-tecnicos/indicadores-tecnicos/indicadores-tecnicos.component';
 import { AnalisisChartistaComponent } from './apartados/analisis-chartista/analisis-chartista.component';
 import { AnalisisFundamentalComponent } from './apartados/analisis-fundamental/analisis-fundamental.component';
+import { ReferenciasComponent } from './apartados/referencias/referencias.component';
 
 
 
@@ -13,6 +14,7 @@ const childRoutes: Routes = [
   { path: 'indicadores-tecnicos', component: IndicadoresTecnicosComponent },
   { path: 'analisis-chartista', component: AnalisisChartistaComponent },
   { path: 'analisis-fundamental', component: AnalisisFundamentalComponent },
+  { path: 'referencias', component: ReferenciasComponent },
 
   // { 
   //   path: 'indicadores-tecnicos',
