@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Modulos
 import { SharedModule } from '../shared/shared.module';
 import { PagesComponent } from './pages.component';
-import { AnalisisChartistaComponent } from './apartados/analisis-chartista/analisis-chartista.component';
+import { AnalisisChartistaComponent } from './apartados/analisis-chartista/analisis-chartista/analisis-chartista.component';
 
 @NgModule({
   declarations: [

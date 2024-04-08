@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { IndicadoresTecnicosComponent } from './apartados/indicadores-tecnicos/indicadores-tecnicos/indicadores-tecnicos.component';
-import { AnalisisChartistaComponent } from './apartados/analisis-chartista/analisis-chartista.component';
+import { AnalisisChartistaComponent } from './apartados/analisis-chartista/analisis-chartista/analisis-chartista.component';
 import { AnalisisFundamentalComponent } from './apartados/analisis-fundamental/analisis-fundamental.component';
 import { ReferenciasComponent } from './apartados/referencias/referencias.component';
 

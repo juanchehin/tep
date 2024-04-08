@@ -11,6 +11,12 @@ import { AlertService } from 'src/app/services/alert.service';
 })
 export class SidebarComponent implements OnInit {
 
+  sidebarItems = [
+    { name: 'Item 1', submenu: ['Subitem 1.1', 'Subitem 1.2'], showDropdown: false },
+    { name: 'Item 2', submenu: ['Subitem 2.1', 'Subitem 2.2'], showDropdown: false },
+    // Agrega más elementos de barra lateral según sea necesario
+  ];
+
   correoActual: any;
   elementosMenuPadre: any[] = [];
   IdPersona: any;
@@ -34,6 +40,10 @@ export class SidebarComponent implements OnInit {
 
   logout() {
     // this.authService.logout();
+  }
+
+  toggleDropdown(item: any) {
+    item.showDropdown = !item.showDropdown;
   }
 
 }
